@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
+import { SharedModule } from 'src/app/shared_modules/shared.module';
+import { NbTreeGridRowToggleComponent, NbTreeGridRowToggleDirective } from '@nebular/theme';
 
 
 @NgModule({
@@ -11,7 +13,8 @@ import { MainComponent } from './main.component';
   ],
   imports: [
     CommonModule,
-    MainRoutingModule
+    MainRoutingModule,
+    SharedModule,
   ]
 })
 export class MainModule { }
