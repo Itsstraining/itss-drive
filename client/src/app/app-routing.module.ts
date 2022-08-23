@@ -12,7 +12,9 @@ const routes: Routes = [
   {path: 'trash', loadChildren: () => import('./pages/trash/trash.module').then(m => m.TrashModule)},
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
