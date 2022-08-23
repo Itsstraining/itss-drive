@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbButtonModule, NbCardModule, NbContextMenuModule, NbIconModule, NbInputModule, NbLayoutModule, NbRouteTabsetModule, NbSidebarModule, NbTabsetModule, NbTreeGridModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbContextMenuModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbRouteTabsetModule, NbSidebarModule, NbTabsetModule, NbTreeGridModule } from '@nebular/theme';
 
 
 
@@ -20,6 +20,7 @@ import { NbButtonModule, NbCardModule, NbContextMenuModule, NbIconModule, NbInpu
     NbContextMenuModule,
     NbInputModule,
     NbSidebarModule,
+    NbFormFieldModule,
   ],
 
   exports: [
@@ -33,6 +34,7 @@ import { NbButtonModule, NbCardModule, NbContextMenuModule, NbIconModule, NbInpu
     NbContextMenuModule,
     NbInputModule,
     NbSidebarModule,
+    NbFormFieldModule,
   ],
 })
 export class SharedModule { }
