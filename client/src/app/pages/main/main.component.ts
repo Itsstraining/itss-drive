@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
-import { NbContextMenuDirective } from '@nebular/theme';
+import { NbContextMenuDirective, NbRouteTab } from '@nebular/theme';
 
 @Component({
   selector: 'app-main',
@@ -27,4 +27,31 @@ export class MainComponent{
   // close() {
   //   this.contextMenu.hide();
   // }
+  title = 'client';
+
+  tabs: NbRouteTab[] = [
+    {
+      title: 'My drive',
+      icon: 'person',
+      route: './my-drive',
+    },
+    {
+      title: 'Recently',
+      icon: 'clock-outline',
+      responsive: true,
+      route: ['./recent'],
+    },
+    {
+      title: 'Favorites',
+      icon: 'star-outline',
+      responsive: true,
+      route: './favorites',
+    },
+    {
+      title: 'Recycle bin',
+      icon: 'trash-outline',
+      responsive: true,
+      route: './trash'
+    },
+  ];
 }

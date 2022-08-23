@@ -1,6 +1,6 @@
 
-<app-navbar></app-navbar>
-<app-sidebar></app-sidebar>
+
+
 <p></p>
 
 
@@ -12,7 +12,7 @@
 </div> -->
 
 
-<div class="parent white">
+<!-- <div class="parent white">
 
     <div class="folder-type">
         <img id="folder" src="https://icones.pro/wp-content/uploads/2021/04/icone-de-dossier-symbole-png-gris.png">
@@ -45,12 +45,51 @@
     <div class="folder-type">
         <button [nbContextMenu]="items"><img id="folder" src="https://icones.pro/wp-content/uploads/2021/04/icone-de-dossier-symbole-png-gris.png"></button>
     </div>
-
+</div> -->
     <!-- <div class="folder-type">
         <button class="menu-target" nbButton [nbContextMenu]="items" nbContextMenuTrigger="noop" (contextmenu)="open()">
             Right Click
         </button>
     </div> -->
 
-</div>
+
+
+<nb-layout>
+
+    <nb-layout-header fixed>
+        <app-navbar></app-navbar>
+    </nb-layout-header>
+
+    <nb-sidebar>
+        <app-sidebar></app-sidebar>
+    </nb-sidebar>
+  
+    <nb-layout-column>
+      <nb-layout>
+        <nb-layout-header>
+            Icon PlaceHolder
+            <div class = "button-actions">
+            </div>
+        </nb-layout-header>
+      
+        <nb-layout-column class="colored-column-basic">
+          <nb-card>
+            <nb-card-body>
+              <nb-route-tabset [tabs]="tabs" fullWidth></nb-route-tabset>
+            </nb-card-body>
+          </nb-card>
+        </nb-layout-column>
+        
+        <nb-layout-footer>
+            Contact us
+        </nb-layout-footer>
+      </nb-layout>
+    </nb-layout-column>
+  
+    <nb-layout-footer fixed>
+    <!-- Insert footer here -->
+    </nb-layout-footer>
+  s
+  
+  </nb-layout>
 
