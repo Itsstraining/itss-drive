@@ -3,9 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
+
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { SidebarComponent } from 'src/app/components/sidebar/sidebar.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+
+import { SharedModule } from 'src/app/shared_modules/shared.module';
+import { NbTreeGridRowToggleComponent, NbTreeGridRowToggleDirective } from '@nebular/theme';
+
+
 
 @NgModule({
   declarations: [
@@ -18,7 +24,11 @@ import {MatSidenavModule} from '@angular/material/sidenav';
   imports: [
     CommonModule,
     MainRoutingModule,
-    MatSidenavModule
+
+    MatSidenavModule,
+
+    SharedModule,
+
   ]
 })
 export class MainModule { }
