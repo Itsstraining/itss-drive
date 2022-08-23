@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbMenuModule, NbDialogModule } from '@nebular/theme';
+import { NbThemeModule, NbMenuModule, NbDialogModule, NbLayoutModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { SharedModule } from './shared_modules/shared.module';
 import { CreateFolderDialogComponent } from './file-manager/modals/create-folder-dialog/create-folder-dialog.component';
@@ -26,6 +26,7 @@ import { RenameFolderDialogComponent } from './file-manager/modals/rename-folder
     NbMenuModule.forRoot(),
     NbDialogModule.forRoot(),
     SharedModule,
+    NbLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
