@@ -8,12 +8,17 @@ import { NbDialogService } from '@nebular/theme';
 })
 export class CreateFolderDialogComponent{
 
-  names: string[] = [];
+  folderNames: string[] = [];
   constructor(private dialogService: NbDialogService) {
   }
 
-  open(dialog: TemplateRef<any>) {
+  openDialog(dialog: TemplateRef<any>) {
     this.dialogService.open(dialog);
+  }
+
+  open() {
+    this.dialogService.open(CreateFolderDialogComponent)
+      .onClose.subscribe(folderNames => folderNames && this.folderNames.push(folderNames));
   }
 }
 

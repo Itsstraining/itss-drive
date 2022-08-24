@@ -10,16 +10,14 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { NbThemeModule, NbMenuModule, NbDialogModule, NbLayoutModule, NbSidebarModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { SharedModule } from './shared_modules/shared.module';
-import { CreateFolderDialogComponent } from './file-manager/modals/create-folder-dialog/create-folder-dialog.component';
-import { RenameFolderDialogComponent } from './file-manager/modals/rename-folder-dialog/rename-folder-dialog.component';
+import { CreateFolderDialogComponent } from './components/file-manager/modals/create-folder-dialog/create-folder-dialog.component';
+import { RenameFolderDialogComponent } from './components/file-manager/modals/rename-folder-dialog/rename-folder-dialog.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateFolderDialogComponent,
-    RenameFolderDialogComponent,
     ],
 
   imports: [
