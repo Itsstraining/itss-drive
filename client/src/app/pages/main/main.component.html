@@ -1,9 +1,6 @@
 <nb-layout>
 
-
-  <nb-layout-column>
     <nb-layout-header>
-      Icon PlaceHolder
       <div class="button-actions">
         <app-navbar></app-navbar>
       </div>
@@ -12,12 +9,25 @@
     <nb-layout-column class="colored-column-basic">
       <nb-card>
         <nb-card-body>
-          <nb-route-tabset [tabs]="tabs" fullWidth></nb-route-tabset>
+          <nb-route-tabset [tabs]="tabs">
+          </nb-route-tabset>
+          <app-my-drive
+          [fileElements]="fileElements | async"
+          [path]="currentPath"
+          canNavigateUp="canNavigateUp"
+          (folderAdded)="addFolder($event)"
+          (elementRemoved)="removeElement($event)"
+          (navigatedDown)="navigateToFolder($event)"
+          (navigatedUp)="navigateUp()"
+          (elementRenamed)="renameElement($event)"
+          (elementMoved)="moveElement($event)"
+        >
+        </app-my-drive>
         </nb-card-body>
-      </nb-card>
-    </nb-layout-column>
 
-  </nb-layout-column>
+      </nb-card>
+      
+    </nb-layout-column>
 
   <nb-layout-footer>
     Contact us

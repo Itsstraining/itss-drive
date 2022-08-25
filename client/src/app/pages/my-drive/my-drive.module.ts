@@ -21,9 +21,9 @@ import { CreateFolderDialogComponent } from '../../components/file-manager/modal
     SharedModule,
     NbDialogModule.forChild(),
   ],
-  providers: [
-    RenameFolderDialogComponent,
-    CreateFolderDialogComponent,
-  ]
+
+  exports: [MyDriveComponent],
+
+  entryComponents: [CreateFolderDialogComponent, RenameFolderDialogComponent]
 })
 export class MyDriveModule { }

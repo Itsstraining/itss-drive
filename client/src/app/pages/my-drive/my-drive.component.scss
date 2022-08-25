@@ -15,7 +15,7 @@
   padding-left: 15px;
 }
 
-.grid-item:hover{
+.grid-item:hover {
   border-color: black;
   border-width: 1px;
 }
@@ -24,7 +24,15 @@ nb-icon {
   font-size: 30px;
 }
 
-#create-btn{
+#create-btn {
   margin-top: 20px;
   margin-left: 1050px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }
