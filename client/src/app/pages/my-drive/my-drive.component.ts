@@ -1,7 +1,9 @@
+
 import { Component, OnInit, } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FileElement } from 'src/app/models/file-element.model';
 import { FileManagerService } from 'src/app/services/file-manager.service';
+
 
 @Component({
   selector: 'app-my-drive',
@@ -12,33 +14,6 @@ export class MyDriveComponent implements OnInit{
   constructor(
     private fileService: FileManagerService
     ){}
-  // names: string[] =[];
-
-    // this.nbMenuService.onItemClick().
-    // pipe(
-    //   filter(({ tag }) => tag ==="open-rename-dialog"),
-    //   map(({ item: {title} }) => title),
-    // ).subscribe(title =>  this.dialogService.open(RenameFolderDialogComponent))
-
-  // @ViewChild(NbContextMenuDirective) contextMenu: NbContextMenuDirective;
-
-  // items = [
-  //   { title: 'Rename' },
-  //   { title: 'Mark as favorites'},
-  //   { title: 'Move to Recycle Bin' },
-  // ];
-
-
-  // openContextMenu() {
-  //   this.contextMenu.show();
-  //   return false;
-  // }
-
-  // @HostListener('document:click')
-  // closeContextMenu() {
-  //   this.contextMenu.hide();
-  // }
-
   public fileElements: Observable<FileElement[]>;
 
   currentRoot: FileElement;
@@ -112,7 +87,5 @@ export class MyDriveComponent implements OnInit{
     p = split.join('/');
     return p;
   }
-
-
 
 }

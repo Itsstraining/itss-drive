@@ -10,6 +10,7 @@ import { SidebarComponent } from 'src/app/components/sidebar/sidebar.component';
 import { SharedModule } from 'src/app/shared_modules/shared.module';
 import { MyDriveModule } from '../my-drive/my-drive.module';
 import { FileManagerService } from 'src/app/services/file-manager.service';
+import { NbCardBodyComponent } from '@nebular/theme';
 
 
 

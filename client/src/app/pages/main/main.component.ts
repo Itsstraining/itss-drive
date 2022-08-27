@@ -16,9 +16,9 @@ import { Observable } from 'rxjs';
 
 export class MainComponent{
 
-  constructor(
-    public dialog: NbDialogService,
-    public fileService: FileManagerService){}
+  // constructor(
+  //   public dialog: NbDialogService,
+  //   public fileService: FileManagerService){}
   // @ViewChild(NbContextMenuDirective) contextMenu: NbContextMenuDirective;
 
   // items = [
@@ -62,4 +62,6 @@ export class MainComponent{
       route: './trash'
     },
   ];
+
+  
 }
