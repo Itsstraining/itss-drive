@@ -1,38 +1,25 @@
 <nb-layout>
 
-    <nb-layout-header>
-      <div class="button-actions">
-        <app-navbar></app-navbar>
-      </div>
-    </nb-layout-header>
+  <nb-layout-header>
+    <div class="button-actions">
+      <app-navbar></app-navbar>
+    </div>
+  </nb-layout-header>
+
+  <nb-layout-column class="colored-column-basic">
+    <nb-card>
+      <nb-card-body>
+        <nb-route-tabset [tabs]="tabs">
+        </nb-route-tabset>
+      </nb-card-body>
+    </nb-card>
+
+  </nb-layout-column>
 
     <nb-sidebar>
 
-
     </nb-sidebar>
     
-    <nb-layout-column class="colored-column-basic">
-      <nb-card>
-        <nb-card-body>
-          <nb-route-tabset [tabs]="tabs">
-          </nb-route-tabset>
-          <app-my-drive
-          [fileElements]="fileElements | async"
-          [path]="currentPath"
-          canNavigateUp="canNavigateUp"
-          (folderAdded)="addFolder($event)"
-          (elementRemoved)="removeElement($event)"
-          (navigatedDown)="navigateToFolder($event)"
-          (navigatedUp)="navigateUp()"
-          (elementRenamed)="renameElement($event)"
-          (elementMoved)="moveElement($event)"
-        >
-        </app-my-drive>
-        </nb-card-body>
-
-      </nb-card>
-      
-    </nb-layout-column>
   <nb-layout-footer>
     Contact us
   </nb-layout-footer>

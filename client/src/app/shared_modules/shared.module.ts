@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { NbButtonModule, NbCardModule, NbContextMenuModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbProgressBarModule, NbRouteTabsetModule, NbSidebarModule, NbTabsetModule, NbTreeGridModule } from '@nebular/theme';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
   ],
@@ -22,7 +21,6 @@ import { NbButtonModule, NbCardModule, NbContextMenuModule, NbFormFieldModule, N
     NbFormFieldModule,
     FormsModule,
     NbProgressBarModule,
-    
   ],
 
   exports: [
