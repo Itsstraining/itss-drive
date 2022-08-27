@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
     NbFormFieldModule,
     FormsModule,
     NbProgressBarModule,
+
   ],
 
   exports: [
