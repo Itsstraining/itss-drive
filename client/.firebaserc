@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "itss-drive": {
+      "hosting": {
+        "client": [
+          "itss-drive"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "itss-drive"
+  }
+}
