@@ -20,6 +20,7 @@ import { RenameFolderDialogComponent } from './file-manager/modals/rename-folder
     AppComponent,
     CreateFolderDialogComponent,
     RenameFolderDialogComponent,
+
     ],
 
   imports: [
