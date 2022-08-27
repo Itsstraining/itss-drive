@@ -33,7 +33,7 @@ export class MainComponent{
     {
       title: 'My drive',
       icon: 'person',
-      route: './my-drive',
+      route: '',
     },
     {
       title: 'Recently',
