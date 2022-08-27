@@ -1,36 +1,15 @@
-<div class="btn-functions">
-    <div id="create-btn">
-        <app-create-folder-dialog></app-create-folder-dialog>
-    </div>
-</div>
-<div class="grid-container">
-    <div class="grid-item" [nbContextMenu]="items" nbContextMenuTrigger="noop" (contextmenu)="openContextMenu()"
-        nbContextMenuTag="open-rename-dialog">
-        <nb-icon icon="folder-outline"></nb-icon>
-        
-    </div>
-    <div class="grid-item">
-        <nb-icon icon="folder-outline"></nb-icon> Folder Name
-    </div>
-    <div class="grid-item">
-        <nb-icon icon="folder-outline"></nb-icon> Folder Name
-    </div>
-    <div class="grid-item">
-        <nb-icon icon="folder-outline"></nb-icon> Folder Name
-    </div>
-    <div class="grid-item">
-        <nb-icon icon="folder-outline"></nb-icon> Folder Name
-    </div>
-    <div class="grid-item">
-        <nb-icon icon="folder-outline"></nb-icon> Folder Name
-    </div>
-    <div class="grid-item">
-        <nb-icon icon="folder-outline"></nb-icon> Folder Name
-    </div>
-    <div class="grid-item">
-        <nb-icon icon="folder-outline"></nb-icon> Folder Name
-    </div>
-    <div class="grid-item">
-        <nb-icon icon="folder-outline"></nb-icon> Folder Name
-    </div>
-</div>
+
+    <nb-card style="height: 100%; box-sizing: border-box; padding:0">
+      <app-file-explorer
+        [fileElements]="fileElements | async"
+        [path]="currentPath"
+        canNavigateUp="canNavigateUp"
+        (folderAdded)="addFolder($event)"
+        (elementRemoved)="removeElement($event)"
+        (navigatedDown)="navigateToFolder($event)"
+        (navigatedUp)="navigateUp()"
+        (elementRenamed)="renameElement($event)"
+        (elementMoved)="moveElement($event)"
+      >
+    </app-file-explorer>
+    </nb-card>
