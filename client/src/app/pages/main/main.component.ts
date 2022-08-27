@@ -35,33 +35,33 @@ export class MainComponent{
   // closeContextMenu() {
   //   this.contextMenu.hide();
   // }
-  title = 'client';
+  // title = 'client';
 
-  tabs: NbRouteTab[] = [
-    {
-      title: 'My drive',
-      icon: 'person',
-      route: '/my-drive',
-    },
-    {
-      title: 'Recently',
-      icon: 'clock-outline',
-      responsive: true,
-      route: ['./recent'],
-    },
-    {
-      title: 'Favorites',
-      icon: 'star-outline',
-      responsive: true,
-      route: './favorites',
-    },
-    {
-      title: 'Recycle bin',
-      icon: 'trash-outline',
-      responsive: true,
-      route: './trash'
-    },
-  ];
+  // tabs: NbRouteTab[] = [
+  //   {
+  //     title: 'My drive',
+  //     icon: 'person',
+  //     route: '/my-drive',
+  //   },
+  //   {
+  //     title: 'Recently',
+  //     icon: 'clock-outline',
+  //     responsive: true,
+  //     route: ['./recent'],
+  //   },
+  //   {
+  //     title: 'Favorites',
+  //     icon: 'star-outline',
+  //     responsive: true,
+  //     route: './favorites',
+  //   },
+  //   {
+  //     title: 'Recycle bin',
+  //     icon: 'trash-outline',
+  //     responsive: true,
+  //     route: './trash'
+  //   },
+  // ];
 
   
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { TrashRoutingModule } from './trash-routing.module';
 import { TrashComponent } from './trash.component';
+import { SharedModule } from 'src/app/shared_modules/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { TrashComponent } from './trash.component';
   ],
   imports: [
     CommonModule,
-    TrashRoutingModule
+    TrashRoutingModule,
+    SharedModule,
   ]
 })
 export class TrashModule { }
