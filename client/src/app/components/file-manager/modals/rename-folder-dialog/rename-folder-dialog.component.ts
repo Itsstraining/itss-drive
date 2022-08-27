@@ -1,5 +1,5 @@
 import { Component, TemplateRef } from '@angular/core';
-import { NbDialogService } from '@nebular/theme';
+import { NbDialogRef, NbDialogService } from '@nebular/theme';
 
 @Component({
   selector: 'app-rename-folder-dialog',
@@ -8,8 +8,8 @@ import { NbDialogService } from '@nebular/theme';
 })
 export class RenameFolderDialogComponent{
 
-  names: string[] = [];
-  constructor(private dialogService: NbDialogService) {
+  folderName: string;
+  constructor(private dialogService: NbDialogService, public dialogRef: NbDialogRef<RenameFolderDialogComponent>) {
   }
 
   open(dialog: TemplateRef<any>) {

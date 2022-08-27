@@ -3,13 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
-
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { SidebarComponent } from 'src/app/components/sidebar/sidebar.component';
 
 import { SharedModule } from 'src/app/shared_modules/shared.module';
-import { NbCardBodyComponent } from '@nebular/theme';
-import { SidebarComponent } from 'src/app/components/sidebar/sidebar.component';
+import { MyDriveModule } from '../my-drive/my-drive.module';
+import { FileManagerService } from 'src/app/services/file-manager.service';
 
 
 
@@ -22,15 +21,16 @@ import { SidebarComponent } from 'src/app/components/sidebar/sidebar.component';
     
     
     
+    
   ],
   imports: [
     CommonModule,
     MainRoutingModule,
-
-    MatSidenavModule,
-
+    MyDriveModule,
     SharedModule,
-
+  ],
+  providers:[
+    FileManagerService,
   ]
 })
 export class MainModule { }
