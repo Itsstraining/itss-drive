@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbButtonModule, NbCardModule, NbContextMenuModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbRouteTabsetModule, NbSidebarModule, NbTabsetModule, NbTreeGridModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
-
+import { NbButtonModule, NbCardModule, NbContextMenuModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbProgressBarModule, NbRouteTabsetModule, NbSidebarModule, NbTabsetModule, NbTreeGridModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [
@@ -22,6 +21,8 @@ import { FormsModule } from '@angular/forms';
     NbSidebarModule,
     NbFormFieldModule,
     FormsModule,
+    NbProgressBarModule,
+    
   ],
 
   exports: [
@@ -37,6 +38,7 @@ import { FormsModule } from '@angular/forms';
     NbSidebarModule,
     NbFormFieldModule,
     FormsModule,
+    NbProgressBarModule,
   ],
 })
 export class SharedModule { }
