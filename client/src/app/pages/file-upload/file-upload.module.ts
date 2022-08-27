@@ -11,7 +11,8 @@ import { FileUploadComponent } from './file-upload.component';
   ],
   imports: [
     CommonModule,
-    FileUploadRoutingModule
+    FileUploadRoutingModule,
+    
   ]
 })
 export class FileUploadModule { }
