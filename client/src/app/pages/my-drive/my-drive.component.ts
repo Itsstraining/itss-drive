@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, HostListener, Input, Output, EventEmitter} from '@angular/core';
-import { NbContextMenuDirective, NbDialogService, NbMenuService} from '@nebular/theme';
-import { RenameFolderDialogComponent } from '../../components/file-manager/modals/rename-folder-dialog/rename-folder-dialog.component';
-import { filter, map } from 'rxjs';
-import { CreateFolderDialogComponent } from '../../components/file-manager/modals/create-folder-dialog/create-folder-dialog.component';
+
+import { Component, OnInit, } from '@angular/core';
+import { Observable } from 'rxjs';
 import { FileElement } from 'src/app/models/file-element.model';
+import { FileManagerService } from 'src/app/services/file-manager.service';
+
 
 @Component({
   selector: 'app-my-drive',
@@ -12,95 +12,80 @@ import { FileElement } from 'src/app/models/file-element.model';
 })
 export class MyDriveComponent implements OnInit{
   constructor(
-    private dialogService: NbDialogService,
-    private nbMenuService: NbMenuService,
-    private dialog: NbDialogService,
+    private fileService: FileManagerService
     ){}
-  // names: string[] =[];
-  ngOnInit(): void {
-    // this.nbMenuService.onItemClick().
-    // pipe(
-    //   filter(({ tag }) => tag ==="open-rename-dialog"),
-    //   map(({ item: {title} }) => title),
-    // ).subscribe(title =>  this.dialogService.open(RenameFolderDialogComponent))
-  }
-  // @ViewChild(NbContextMenuDirective) contextMenu: NbContextMenuDirective;
+  public fileElements: Observable<FileElement[]>;
 
-  // items = [
-  //   { title: 'Rename' },
-  //   { title: 'Mark as favorites'},
-  //   { title: 'Move to Recycle Bin' },
-  // ];
+  currentRoot: FileElement;
+  currentPath: string;
+  canNavigateUp = false;
 
+  ngOnInit() {
+    const folderA = this.fileService.add({ name: 'Folder A', isFolder: true, parent: 'root' });
+    this.fileService.add({ name: 'Folder B', isFolder: true, parent: 'root' });
+    this.fileService.add({ name: 'Folder C', isFolder: true, parent: folderA.id });
+    this.fileService.add({ name: 'File A', isFolder: false, parent: 'root' });
+    this.fileService.add({ name: 'File B', isFolder: false, parent: 'root' });
 
-  // openContextMenu() {
-  //   this.contextMenu.show();
-  //   return false;
-  // }
-
-  // @HostListener('document:click')
-  // closeContextMenu() {
-  //   this.contextMenu.hide();
-  // }
-
-  @Input() fileElements: FileElement[]
-  @Input() canNavigateUp: string
-  @Input() path: string
-
-  @Output() folderAdded = new EventEmitter<{ name: string }>()
-  @Output() elementRemoved = new EventEmitter<FileElement>()
-  @Output() elementRenamed = new EventEmitter<FileElement>()
-  @Output() elementMoved = new EventEmitter<{
-    element: FileElement
-    moveTo: FileElement
-  }>()
-  @Output() navigatedDown = new EventEmitter<FileElement>()
-  @Output() navigatedUp = new EventEmitter()
-
-
-  deleteElement(element: FileElement) {
-    this.elementRemoved.emit(element);
+    this.updateFileElementQuery();
   }
 
-  navigate(element: FileElement) {
-    if (element.isFolder) {
-      this.navigatedDown.emit(element);
-    }
+  addFolder(folder: { name: string }) {
+    this.fileService.add({ isFolder: true, name: folder.name, parent: this.currentRoot ? this.currentRoot.id : 'root' });
+    this.updateFileElementQuery();
+  }
+
+  removeElement(element: FileElement) {
+    this.fileService.delete(element.id);
+    this.updateFileElementQuery();
+  }
+
+  navigateToFolder(element: FileElement) {
+    this.currentRoot = element;
+    this.updateFileElementQuery();
+    this.currentPath = this.pushToPath(this.currentPath, element.name);
+    this.canNavigateUp = true;
   }
 
   navigateUp() {
-    this.navigatedUp.emit();
+    if (this.currentRoot && this.currentRoot.parent === 'root') {
+      this.currentRoot = null;
+      this.canNavigateUp = false;
+      this.updateFileElementQuery();
+    } else {
+      this.currentRoot = this.fileService.getId(this.currentRoot.parent);
+      this.updateFileElementQuery();
+    }
+    this.currentPath = this.popFromPath(this.currentPath);
   }
 
-  moveElement(element: FileElement, moveTo: FileElement) {
-    this.elementMoved.emit({ element: element, moveTo: moveTo });
+  moveElement(event: { element: FileElement; moveTo: FileElement }) {
+    this.fileService.update(event.element.id, { parent: event.moveTo.id });
+    this.updateFileElementQuery();
   }
 
-  openNewFolderDialog() {
-    let dialogRef = this.dialog.open(CreateFolderDialogComponent);
-    dialogRef.onClose.subscribe(res => {
-      console.log(res);
-      if(res){
-        this.folderAdded.emit({name: res})
-        
-      }
-    })
-
+  renameElement(element: FileElement) {
+    console.log(element);
+    this.fileService.update(element.id, { name: element.name });
+    this.updateFileElementQuery();
   }
 
-  openRenameDialog(element: FileElement) {
-    let dialogRef = this.dialog.open(RenameFolderDialogComponent);
-    dialogRef.onClose.subscribe(res => {
-      if(res){
-        element.name = res;
-        this.elementRenamed.emit(element);
-      }
-    })
-
+  updateFileElementQuery() {
+    this.fileElements = this.fileService.queryInFolder(this.currentRoot ? this.currentRoot.id : 'root');
   }
 
-  // openMenu(event: MouseEvent, element:FileElement){
-  //   event.preventDefault();
-  // }
+  pushToPath(path: string, folderName: string) {
+    let p = path ? path : '';
+    p += `${folderName}/`;
+    return p;
+  }
+
+  popFromPath(path: string) {
+    let p = path ? path : '';
+    let split = p.split('/');
+    split.splice(split.length - 2, 1);
+    p = split.join('/');
+    return p;
+  }
 
 }

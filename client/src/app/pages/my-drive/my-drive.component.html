@@ -1,30 +1,16 @@
 
-<div>    
-<div id="toolbar">
-    <nb-icon class="pointer" *ngIf="canNavigateUp" (click)="navigateUp()" icon="arrow-back-outline">
-    </nb-icon>
-    <span style="margin-left: 8px"> {{path || 'Files'}} </span>
-    <span class="spacer"></span>
-    <nb-icon class="pointer" (click)="openNewFolderDialog()" icon="folder-add-outline"></nb-icon>
-</div>
+    <nb-card style="height: 100%; box-sizing: border-box; padding:0">
+      <app-file-explorer
+        [fileElements]="fileElements | async"
+        [path]="currentPath"
+        canNavigateUp="canNavigateUp"
+        (folderAdded)="addFolder($event)"
+        (elementRemoved)="removeElement($event)"
+        (navigatedDown)="navigateToFolder($event)"
+        (navigatedUp)="navigateUp()"
+        (elementRenamed)="renameElement($event)"
+        (elementMoved)="moveElement($event)"
+      >
+    </app-file-explorer>
+    </nb-card>
 
-<div class="container">
-    <div class="grid-container">
-        <div class="grid-item" 
-             *ngFor="let element of fileElements" 
-             (click)="navigate(element)">
-             <!-- [nbContextMenu]="items" 
-             nbContextMenuTrigger="noop"
-             (contextmenu)="openContextMenu()"  -->
-             
-            <nb-icon class="file-or-folder-icon pointer"
-                *ngIf="element.isFolder"
-                icon="folder-outline"></nb-icon>
-            <nb-icon class="file-or-folder-icon pointer"
-                *ngIf="!element.isFolder"
-                icon="file-outline"></nb-icon>
-            <span>{{element.name}}</span>
-        </div>
-    </div>
-</div>
-</div>
