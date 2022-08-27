@@ -7,8 +7,6 @@ const routes: Routes = [
   { path: 'intro', loadChildren: () => import('./pages/inro/inro.module').then(m => m.InroModule) },
   { path: 'signup', loadChildren: () => import('./pages/sign-up/sign-up.module').then(m => m.SignUpModule) },
 
-  { path: 'file-upload', loadChildren: () => import('./pages/file-upload/file-upload.module').then(m => m.FileUploadModule) },
-
   
 ];
 @NgModule({
