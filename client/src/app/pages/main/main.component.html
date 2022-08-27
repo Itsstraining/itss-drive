@@ -1,37 +1,27 @@
-
 <nb-layout>
 
-    <nb-layout-header>
-        <app-navbar></app-navbar>
-    </nb-layout-header>
+  <nb-layout-header>
+    <div class="button-actions">
+      <app-navbar></app-navbar>
+    </div>
+  </nb-layout-header>
 
     <nb-sidebar>
-        <app-sidebar></app-sidebar>
+      <app-sidebar></app-sidebar>
     </nb-sidebar>
-  
-    <nb-layout-column>
-      <nb-layout>
-        <nb-layout-header>
-            Icon PlaceHolder
-            <div class = "button-actions">
-            </div>
-        </nb-layout-header>
-      
-        <nb-layout-column class="colored-column-basic">
-          <nb-card>
-            <nb-card-body>
-              <nb-route-tabset [tabs]="tabs" fullWidth></nb-route-tabset>
-            </nb-card-body>
-          </nb-card>
-        </nb-layout-column>
-        
-      </nb-layout>
-    </nb-layout-column>
-  
-    <nb-layout-footer >
-        Contact us
-    </nb-layout-footer>
-  s
-  
-  </nb-layout>
 
+    <nb-layout-column class="colored-column-basic">
+      <nb-card>
+        <nb-card-body>
+          <nb-route-tabset [tabs]="tabs">
+          </nb-route-tabset>
+        </nb-card-body>
+
+      </nb-card>
+      
+    </nb-layout-column>
+  <nb-layout-footer>
+    Contact us
+  </nb-layout-footer>
+
+</nb-layout>

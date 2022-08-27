@@ -1,0 +1,23 @@
+<div>
+    <div id="toolbar">
+        <nb-icon class="pointer" *ngIf="canNavigateUp" (click)="navigateUp()" icon="arrow-back-outline">
+        </nb-icon>
+        <span style="margin-left: 8px"> {{path || 'Files'}} </span>
+        <span class="spacer"></span>
+        <nb-icon class="pointer" (click)="openNewFolderDialog()" icon="folder-add-outline"></nb-icon>
+    </div>
+
+    <div class="container">
+        <div class="grid-container">
+            <div class="grid-item" *ngFor="let element of fileElements" (click)="navigate(element)">
+                <!-- [nbContextMenu]="items" 
+             nbContextMenuTrigger="noop"
+             (contextmenu)="openContextMenu()"  -->
+
+                <nb-icon class="file-or-folder-icon pointer" *ngIf="element.isFolder" icon="folder-outline"></nb-icon>
+                <nb-icon class="file-or-folder-icon pointer" *ngIf="!element.isFolder" icon="file-outline"></nb-icon>
+                <span>{{element.name}}</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-  <!-- <!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <title>W3.CSS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,8 +43,7 @@ function w3_close() {
 }
 </script> -->
 
-
- <!-- <mat-drawer-container class="example-container" autosize>
+<!-- <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <p>Auto-resizing sidenav</p>
     <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
@@ -59,15 +58,63 @@ function w3_close() {
     </button>
   </div>
 
-</mat-drawer-container> --> 
+</mat-drawer-container> -->
 <nb-layout>
-  <nb-layout-header fixed>
-    <button nbButton status="success" size="tiny" (click)="toggle()">Toggle</button>
-    <button nbButton status="info" size="tiny" (click)="toggleCompact()">Toggle Compact</button>
-  </nb-layout-header>
+  <!-- <nb-layout-header fixed>
+    <button nbButton status="success" size="tiny" (click)="toggle()">
+      Toggle
+    </button>
+    <button nbButton status="info" size="tiny" (click)="toggleCompact()">
+      Toggle Compact
+    </button>
+  </nb-layout-header> -->
 
-  <nb-sidebar tag="left"></nb-sidebar>
-  <nb-sidebar right tag="right"></nb-sidebar>
+  <!-- <nb-sidebar tag="left"></nb-sidebar>
+  <nb-sidebar right tag="right"></nb-sidebar> -->
 
-  <nb-layout-column class="colored-column-warning">Layout Content</nb-layout-column>
+  <nb-layout-column class="colored-column-warning">
+    <div class="content">
+      <nb-card-body class="example-items-rows">
+        <button nbButton hero status="info">+ Mới</button>
+      </nb-card-body>
+      <div class="form-content">
+        <img src="../../../assets/images/storage.png" alt="" />
+        <p>Drive của tôi</p>
+      </div>
+      <div class="form-content">
+        <img src="../../../assets/images/computer.png" alt="" />
+        <p>Máy tính của tôi</p>
+      </div>
+      <div class="form-content">
+        <img src="../../../assets/images/team.png" alt="" />
+        <p>Được chia sẻ với tôi</p>
+      </div>
+      <div class="form-content">
+        <img src="../../../assets/images/clock.png" alt="" />
+        <p>Gần đây</p>
+      </div>
+      <div class="form-content">
+        <img src="../../../assets/images/star.png" alt="" />
+        <p>Có gắn dấu sao</p>
+      </div>
+      <div class="form-content">
+        <img src="../../../assets/images/recycle-bin.png" alt="" />
+        <p>Thùng rác</p>
+      </div>
+      <hr style="border-color: black" />
+      <div class="form-content">
+        <img src="../../../assets/images/cloud.png" alt="" />
+        <p>Bộ nhớ</p>
+      </div>
+      <nb-card-body>
+        <nb-progress-bar
+          [value]="10"
+          status="primary"
+          [displayValue]="true"
+        ></nb-progress-bar>
+      </nb-card-body>
+    </div>
+    </nb-layout-column>
+
+  
 </nb-layout>
