@@ -1,5 +1,5 @@
 import { Component, TemplateRef } from '@angular/core';
-import { NbDialogService } from '@nebular/theme';
+import { NbDialogRef, NbDialogService } from '@nebular/theme';
 
 @Component({
   selector: 'app-create-folder-dialog',
@@ -8,17 +8,23 @@ import { NbDialogService } from '@nebular/theme';
 })
 export class CreateFolderDialogComponent{
 
-  folderNames: string[] = [];
-  constructor(private dialogService: NbDialogService) {
+  folderName: string;
+  constructor(
+    private dialogService: NbDialogService,
+    public dialogRef: NbDialogRef<CreateFolderDialogComponent>) {
   }
 
   openDialog(dialog: TemplateRef<any>) {
     this.dialogService.open(dialog);
   }
 
-  open() {
-    this.dialogService.open(CreateFolderDialogComponent)
-      .onClose.subscribe(folderNames => folderNames && this.folderNames.push(folderNames));
+  close(){
+    this.dialogRef.close();
   }
+
+  // open() {
+  //   this.dialogService.open(CreateFolderDialogComponent)
+  //     .onClose.subscribe(folderNames => folderNames && this.folderName.push(folderName));
+  // }
 }
 
