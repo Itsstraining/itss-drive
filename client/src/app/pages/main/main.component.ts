@@ -41,7 +41,7 @@ export class MainComponent{
     {
       title: 'My drive',
       icon: 'person',
-      route: '',
+      route: '/my-drive',
     },
     {
       title: 'Recently',
