@@ -1,0 +1,26 @@
+<!-- <nb-card>
+  <nb-card-header>Rename folder</nb-card-header>
+
+  <nb-card-body>
+    <input type="text" nbInput placeholder="Enter folder name" [(ngModel)="folderName">
+  </nb-card-body>
+
+  <nb-card-footer>
+    <button nbButton status="primary" (click)="close()">Cancel</button>
+    <button type="submit" nbButton status="danger" (click)="submit()">OK</button>
+  </nb-card-footer>
+
+</nb-card> -->
+
+<h1 mat-dialog-title>Rename Element</h1>
+
+<mat-dialog-content>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Folder Name" [(ngModel)]="folderName">
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button [mat-dialog-close]="folderName" color="primary">OK</button>
+</mat-dialog-actions>

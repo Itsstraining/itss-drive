@@ -1,0 +1,14 @@
+    <nb-card>
+      <nb-card-header>Create a new folder</nb-card-header>
+      <!-- <form> -->
+      <nb-card-body>
+        
+        <input type="text" nbInput placeholder="Enter folder name" [(ngModel)]="folderName">
+      </nb-card-body>
+
+      <nb-card-footer>
+        <button nbButton status="primary" (click)="close()">Cancel</button>
+        <button type="submit" nbButton status="danger" (click) ="submit()">OK</button>
+      </nb-card-footer>
+    <!-- </form> -->
+    </nb-card>
