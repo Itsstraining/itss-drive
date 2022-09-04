@@ -18,8 +18,6 @@ import { CreateFolderDialogComponent } from './components/file-manager/modals/cr
 import { RenameFolderDialogComponent } from './components/file-manager/modals/rename-folder-dialog/rename-folder-dialog.component';
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +38,7 @@ import { RenameFolderDialogComponent } from './components/file-manager/modals/re
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
