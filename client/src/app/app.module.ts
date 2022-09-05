@@ -16,6 +16,8 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { CreateFolderDialogComponent } from './components/file-manager/modals/create-folder-dialog/create-folder-dialog.component';
 import { RenameFolderDialogComponent } from './components/file-manager/modals/rename-folder-dialog/rename-folder-dialog.component';
+import { FormsModule } from '@angular/forms';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 
 @NgModule({
@@ -38,9 +40,9 @@ import { RenameFolderDialogComponent } from './components/file-manager/modals/re
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
-    
+    FormsModule
   ],
-  providers: [],
+  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

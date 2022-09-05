@@ -5,6 +5,7 @@ import { Auth, authState, GoogleAuthProvider, signInWithPopup, signOut, User } f
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Observable } from 'rxjs/internal/Observable';
 import { EMPTY } from 'rxjs/internal/observable/empty';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -13,10 +14,10 @@ import { EMPTY } from 'rxjs/internal/observable/empty';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  [x: string]: any;
-  
+  username: string;
+  password: string;
  
-  constructor() { 
+  constructor(private auth: AuthService) { 
       
     }
 
@@ -39,9 +40,25 @@ export class LoginComponent implements OnInit {
   //     this.userDisposable.unsubscribe();
   //   }
   // }
-  LogInWithGoogle() {
-    this['auth'].googleSignIn();
+  login(){
+    if(this.username == ''){
+      alert('Please enter username');
+      return;
+    }
+
+    if(this.password == ''){
+      alert('Please enter password');
+    }
+
+    this.auth.login(this.username,this.password);
+    this.username;
+    this.password;
   }
-  
+
+  SignInWithGoogle(){
+    this.auth.SignInWithGoogle();
+  }
+
+
 
 }
