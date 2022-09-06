@@ -7,6 +7,7 @@ const routes: Routes = [{ path: '', component: MainComponent, children: [
   { path: 'recent', loadChildren: () => import('../../pages/recent/recent.module').then(m => m.RecentModule) },
   {path: 'favorites', loadChildren: () => import('../../pages/favorites/favorites.module').then(m => m.FavoritesModule)},
   {path: 'trash', loadChildren: () => import('../../pages/trash/trash.module').then(m => m.TrashModule)},
+  { path: 'profile', loadChildren: () => import('../../pages/profile/profile/profile.module').then(m => m.ProfileModule) },
 ] }
   
 ];
