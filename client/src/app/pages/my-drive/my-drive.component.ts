@@ -25,8 +25,7 @@ export class MyDriveComponent implements OnInit{
   canNavigateUp = false;
   count:number;
   ngOnInit() {
-    this.getAllFolders(),
-    // this.firestoreService.getAllFiles()
+    this.getAllFolders();
     this.updateFileElementQuery();
   }
 
