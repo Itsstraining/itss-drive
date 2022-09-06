@@ -23,12 +23,6 @@ export class FileExplorerComponent implements OnInit {
 ) { }
 
   ngOnInit(): void {
-    // this.nbMenuService.onItemClick()
-    //   .pipe(
-    //     filter(({ tag }) => tag === 'my-context-menu'),
-    //     map(({ item: { title } }) => title),
-    //   )
-    //   .subscribe(title => this.openRenameDialog(eleme));
   }
   @Input() fileElements: FileElement[]
   @Input() canNavigateUp: string
@@ -77,16 +71,6 @@ export class FileExplorerComponent implements OnInit {
     })
   }
 
-  // openRenameDialog(element: FileElement) {
-  //   let dialogRef = this.dialog.open(RenameFolderDialogComponent);
-  //   dialogRef.onClose.subscribe(res => {
-  //     if(res){
-  //       element.name = res;
-  //       this.elementRenamed.emit(element);
-  //     }
-  //   })
-  // }
-
   openRenameDialog(element: FileElement) {
     let dialogRef = this.matdiaLog.open(RenameFolderDialogComponent);
     dialogRef.afterClosed().subscribe(res => {
@@ -100,24 +84,5 @@ export class FileExplorerComponent implements OnInit {
     event.preventDefault();
     viewChild.openMenu();
   }
-
-  // ----------Context Menu-----------------
-  // items = [
-  //   { title: 'Rename' },
-  //   { title: 'Mark as favorites'}
-  // ];
-
-  // @ViewChild(NbContextMenuDirective) contextMenu: NbContextMenuDirective;
-
-  // open() {
-  //   this.contextMenu.show();
-  //   return false;
-  // }
-
-  // @HostListener('document:click')
-  // close() {
-  //   this.contextMenu.hide();
-  // }
-
 
 }
