@@ -1,8 +1,5 @@
 
 <div  style="display:flex; width: 100%;">
-  <div style="width: 100px;">
-    <img src="../../../assets/images/logo.png" style="width: 60px;">
-  </div>  
   <h1 style="vertical-align: middle;"> Drive</h1>
   <button nbButton status="basic" style="margin-left: 200px;"><nb-icon icon="search"></nb-icon></button> 
   <!-- <input style="width: 100vw; border-radius: 15px;"> -->
@@ -12,7 +9,7 @@
   <nb-icon icon="settings-2-outline" style="margin-left:20px"></nb-icon>
   <nb-icon icon="more-horizontal"style=""   ></nb-icon>
   <img src="../../../assets/images/user.png" alt="" style="width: 50px; margin-left: 20px; margin-right: 10px;">
-  <button nbButton status="basic" >
+  <button nbButton status="basic" (click)="logout()">
     <img src="../../../assets/images/logout.png" alt="" style="width: 20px;">
   </button>
   

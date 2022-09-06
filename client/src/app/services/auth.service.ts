@@ -22,6 +22,12 @@ export class AuthService {
         this.router.navigate(['/login']);
     } )
   }
+  logout(){
+    this.fireauth.signOut().then(()=> {
+      localStorage.removeItem('token');
+      this.router.navigate(['']);
+    })
+  }
   
   //sign up
   signup(username:string, password:string){
