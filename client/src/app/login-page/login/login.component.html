@@ -8,13 +8,13 @@
   
 
     <button type="button" class="btn btn-info" (click)="login" >Log in</button>
+    <div>
+      <a routerLink="/sign-up">Register</a>
+    </div>
     <div class="row mt-2">
       <a (click)="SignInWithGoogle()" style="text-decoration: none;cursor: pointer;">
-          <div class="card shadow text-center">
-              <div class="card-body">
-                  <img src="https://pluspng.com/img-png/google-logo-png-revised-google-logo-1600.png" alt="" height="" width="24px"> Sign In with Google
-              </div>
-          </div>
+        <img src="../../../assets/images/google-symbol.png" alt="" style="width: 50px;">
+        <p> Sign In with Google</p>
       </a>
   </div>
    
