@@ -3,6 +3,7 @@ import { Component, OnInit, } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FileElement } from 'src/app/models/file-element.model';
 import { FileManagerService } from 'src/app/services/file-manager.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
 
 @Component({
@@ -12,23 +13,23 @@ import { FileManagerService } from 'src/app/services/file-manager.service';
 })
 export class MyDriveComponent implements OnInit{
   constructor(
-    private fileService: FileManagerService
+    private fileService: FileManagerService,
+    private firestoreService: FirestoreService,
     ){}
   public fileElements: Observable<FileElement[]>;
+
+  listOfFolders : FileElement[] = [];
 
   currentRoot: FileElement;
   currentPath: string;
   canNavigateUp = false;
-
+  count:number;
   ngOnInit() {
-    const folderA = this.fileService.add({ name: 'Folder A', isFolder: true, parent: 'root' });
-    this.fileService.add({ name: 'Folder B', isFolder: true, parent: 'root' });
-    this.fileService.add({ name: 'Folder C', isFolder: true, parent: folderA.id });
-    this.fileService.add({ name: 'File A', isFolder: false, parent: 'root' });
-    this.fileService.add({ name: 'File B', isFolder: false, parent: 'root' });
-
+    this.getAllFolders(),
+    // this.firestoreService.getAllFiles()
     this.updateFileElementQuery();
   }
+
 
   addFolder(folder: { name: string }) {
     this.fileService.add({ isFolder: true, name: folder.name, parent: this.currentRoot ? this.currentRoot.id : 'root' });
@@ -72,6 +73,27 @@ export class MyDriveComponent implements OnInit{
 
   updateFileElementQuery() {
     this.fileElements = this.fileService.queryInFolder(this.currentRoot ? this.currentRoot.id : 'root');
+  }
+
+  getAllFolders() {
+    this.firestoreService.getAllFolders().subscribe( res => {
+        this.listOfFolders = res.map((e : any) => {
+            const data = e.payload.doc.data();
+            data.id = e.payload.doc.id;
+            console.log(data);
+            return data;
+        });
+    }, err => {
+        console.log('Error occured while fetching file meta data');
+    })
+  }
+
+  deleteFolder(folder : FileElement) {
+
+    if(window.confirm('Are you sure you want to delete '+ folder.name   + '?')) {
+      this.firestoreService.deleteFolders(folder);
+      this.ngOnInit();
+   }
   }
 
   pushToPath(path: string, folderName: string) {

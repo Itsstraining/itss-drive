@@ -1,5 +1,6 @@
 import { Component, TemplateRef } from '@angular/core';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-rename-folder-dialog',
@@ -9,10 +10,15 @@ import { NbDialogRef, NbDialogService } from '@nebular/theme';
 export class RenameFolderDialogComponent{
 
   folderName: string;
-  constructor(private dialogService: NbDialogService, public dialogRef: NbDialogRef<RenameFolderDialogComponent>) {
+  constructor(public dialogRef: MatDialogRef<RenameFolderDialogComponent>) {
+  }
+  close(){
+    this.dialogRef.close();
+    console.log(this.folderName);
   }
 
-  open(dialog: TemplateRef<any>) {
-    this.dialogService.open(dialog);
+  submit(){
+    this.dialogRef.close(this.folderName);
+    console.log(this.folderName);
   }
 }
