@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inro.component.scss']
 })
 export class InroComponent implements OnInit {
-
+  userData = '';
   constructor() { }
 
   ngOnInit(): void {
+    
   }
+
+  logoutUser() {
+    
+  }
+
+
 
 }
