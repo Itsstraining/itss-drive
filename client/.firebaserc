@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "itss-drive": {
+      "hosting": {
+        "client": [
+          "itss-drive"
+        ]
+      }
+    },
+    "itss-drive-dbad1": {
+      "hosting": {
+        "client": [
+          "itss-drive-dbad1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "itss-drive-dbad1"
+  }
+}
