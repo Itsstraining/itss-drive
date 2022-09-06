@@ -31,9 +31,6 @@ export class FileUploadComponent implements OnInit {
               private fireStorage: AngularFireStorage,
               private toastrService: NbToastrService,
               ) { }
-     showToast(position: NbGlobalPosition) {
-    this.toastrService.show('This is super toast message', `This is toast number: ${++this.index}`, { position });
-  }
 
   ngOnInit(): void {
     this.getAllFiles();
@@ -74,7 +71,7 @@ export class FileUploadComponent implements OnInit {
         this.listOfFiles = res.map((e : any) => {
             const data = e.payload.doc.data();
             data.id = e.payload.doc.id;
-            console.log(data);
+            // console.log(data);
             return data;
         });
     }, err => {
@@ -89,6 +86,4 @@ export class FileUploadComponent implements OnInit {
       this.ngOnInit();
    }
   }
-
-  
 }
