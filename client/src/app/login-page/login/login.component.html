@@ -1,0 +1,27 @@
+<h1 style="text-align: center;">Log in</h1>
+<div class="form">
+                             
+  <input type="username" name="username" placeholder="username"  />
+  
+     
+    <input type="password" name="Password" placeholder="Password" />
+  
+
+    <button type="button" class="btn btn-info" (click)="login" >Log in</button>
+    <div>
+      <a routerLink="/sign-up">Register</a>
+    </div>
+    <div class="row mt-2">
+      <a (click)="SignInWithGoogle()" style="text-decoration: none;cursor: pointer;">
+        <img src="../../../assets/images/google-symbol.png" alt="" style="width: 50px;">
+        <p> Sign In with Google</p>
+      </a>
+  </div>
+   
+
+  </div> 
+  <!-- <p class="message">Have a problem? <a href="https://www.itss.edu.vn/">Contact us</a></p> -->
+  <div style="display: flex; justify-content: center;">
+    <p class="message">Have a problem? <a href="https://www.itss.edu.vn/">Contact us</a></p>
+ </div>
+
