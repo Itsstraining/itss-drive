@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <!-- <div>
+=======
+<div>
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
     <div id="toolbar">
         <nb-icon class="pointer" *ngIf="canNavigateUp" (click)="navigateUp()" icon="arrow-back-outline">
         </nb-icon>
@@ -10,6 +14,7 @@
     <div class="container">
         <div class="grid-container">
             <div class="grid-item" *ngFor="let element of fileElements" (click)="navigate(element)">
+<<<<<<< HEAD
              <!-- nbContextMenuTrigger="noop"
              (contextmenu)="open()"
              nbContextMenuTag="my-context-menu"> 
@@ -17,11 +22,19 @@
 
 
                 <!-- <nb-icon class="file-or-folder-icon pointer" *ngIf="element.isFolder" icon="folder-outline"></nb-icon>
+=======
+                <!-- [nbContextMenu]="items" 
+             nbContextMenuTrigger="noop"
+             (contextmenu)="openContextMenu()"  -->
+
+                <nb-icon class="file-or-folder-icon pointer" *ngIf="element.isFolder" icon="folder-outline"></nb-icon>
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
                 <nb-icon class="file-or-folder-icon pointer" *ngIf="!element.isFolder" icon="file-outline"></nb-icon>
                 <span>{{element.name}}</span>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 </div> --> 
 
 
@@ -76,3 +89,6 @@
     </ng-template>
   </mat-menu>
 
+=======
+</div>
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3

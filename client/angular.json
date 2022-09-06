@@ -115,8 +115,13 @@
             "prerender": false,
             "ssr": false,
             "browserTarget": "client:build:production",
+<<<<<<< HEAD
             "firebaseProject": "itss-drive-dbad1",
             "firebaseHostingSite": "itss-drive-dbad1"
+=======
+            "firebaseProject": "itss-drive",
+            "firebaseHostingSite": "itss-drive"
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
           }
         }
       }

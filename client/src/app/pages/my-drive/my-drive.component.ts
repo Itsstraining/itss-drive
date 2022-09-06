@@ -3,7 +3,10 @@ import { Component, OnInit, } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FileElement } from 'src/app/models/file-element.model';
 import { FileManagerService } from 'src/app/services/file-manager.service';
+<<<<<<< HEAD
 import { FirestoreService } from 'src/app/services/firestore.service';
+=======
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
 
 
 @Component({
@@ -13,14 +16,19 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 })
 export class MyDriveComponent implements OnInit{
   constructor(
+<<<<<<< HEAD
     private fileService: FileManagerService,
     private firestoreService: FirestoreService
+=======
+    private fileService: FileManagerService
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
     ){}
   public fileElements: Observable<FileElement[]>;
 
   currentRoot: FileElement;
   currentPath: string;
   canNavigateUp = false;
+<<<<<<< HEAD
   count:number;
   ngOnInit() {
 
@@ -44,6 +52,22 @@ export class MyDriveComponent implements OnInit{
     this.fileService.add({ isFolder: true, name: folder.name, parent: this.currentRoot ? this.currentRoot.id : 'root' });
     this.updateFileElementQuery();
 
+=======
+
+  ngOnInit() {
+    const folderA = this.fileService.add({ name: 'Folder A', isFolder: true, parent: 'root' });
+    this.fileService.add({ name: 'Folder B', isFolder: true, parent: 'root' });
+    this.fileService.add({ name: 'Folder C', isFolder: true, parent: folderA.id });
+    this.fileService.add({ name: 'File A', isFolder: false, parent: 'root' });
+    this.fileService.add({ name: 'File B', isFolder: false, parent: 'root' });
+
+    this.updateFileElementQuery();
+  }
+
+  addFolder(folder: { name: string }) {
+    this.fileService.add({ isFolder: true, name: folder.name, parent: this.currentRoot ? this.currentRoot.id : 'root' });
+    this.updateFileElementQuery();
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
   }
 
   removeElement(element: FileElement) {

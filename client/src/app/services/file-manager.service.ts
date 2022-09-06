@@ -17,6 +17,7 @@ export interface IFileService {
 @Injectable()
 
 export class FileManagerService implements IFileService{
+<<<<<<< HEAD
   dataLength = 0;
   private map = new Map<string, FileElement>();
   
@@ -25,6 +26,9 @@ export class FileManagerService implements IFileService{
       this.dataLength = res.length;
     })
   }
+=======
+  private map = new Map<string, FileElement>();
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
   add(fileElement: FileElement) {
     fileElement.id = v4();
     this.map.set(fileElement.id, this.clone(fileElement));
@@ -41,7 +45,11 @@ export class FileManagerService implements IFileService{
     this.map.set(element.id, element);
   }
 
+<<<<<<< HEAD
   public querySubject: BehaviorSubject<FileElement[]>;
+=======
+  private querySubject: BehaviorSubject<FileElement[]>;
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
   queryInFolder(folderId: string) {
     const result: FileElement[] = [];
     this.map.forEach(element => {

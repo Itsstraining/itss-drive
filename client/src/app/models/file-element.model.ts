@@ -3,6 +3,7 @@ export interface FileElement{
     isFolder?: boolean;
     name?: string;
     parent?: string;
+<<<<<<< HEAD
     isStarred?: boolean;
     createAt?: string;
 }
@@ -22,3 +23,6 @@ export interface FileElement{
 //         this.file = file;
 //       }
 // }
+=======
+}
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3

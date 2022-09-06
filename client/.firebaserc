@@ -6,6 +6,7 @@
           "itss-drive"
         ]
       }
+<<<<<<< HEAD
     },
     "itss-drive-dbad1": {
       "hosting": {
@@ -17,5 +18,11 @@
   },
   "projects": {
     "default": "itss-drive-dbad1"
+=======
+    }
+  },
+  "projects": {
+    "default": "itss-drive"
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
   }
 }

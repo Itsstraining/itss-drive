@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 import { Component, OnInit, } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FileElement } from 'src/app/models/file-element.model';
 import { FileManagerService } from 'src/app/services/file-manager.service';
+=======
+import { Component, OnInit } from '@angular/core';
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
 
 @Component({
   selector: 'app-favorites',
@@ -9,6 +13,7 @@ import { FileManagerService } from 'src/app/services/file-manager.service';
   styleUrls: ['./favorites.component.scss']
 })
 export class FavoritesComponent implements OnInit {
+<<<<<<< HEAD
   constructor(
     private fileService: FileManagerService
     ){}
@@ -78,6 +83,12 @@ export class FavoritesComponent implements OnInit {
     split.splice(split.length - 2, 1);
     p = split.join('/');
     return p;
+=======
+
+  constructor() { }
+
+  ngOnInit(): void {
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
   }
 
 }

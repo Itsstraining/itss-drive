@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 @use 'themes' as *;
 // Custom Theming for Angular Material
@@ -35,6 +36,9 @@
 // that you are using.
 // @include mat.all-component-themes($client-theme);
 
+=======
+@use 'themes' as *;
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
 
 @use '@nebular/theme/styles/globals' as *;
 
@@ -45,4 +49,7 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3

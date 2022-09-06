@@ -14,6 +14,7 @@ export class CreateFolderDialogComponent{
     public dialogRef: NbDialogRef<CreateFolderDialogComponent>) {
   }
 
+<<<<<<< HEAD
   close(){
     this.dialogRef.close();
     console.log(this.folderName);
@@ -25,5 +26,19 @@ export class CreateFolderDialogComponent{
   }
 
 
+=======
+  openDialog(dialog: TemplateRef<any>) {
+    this.dialogService.open(dialog);
+  }
+
+  close(){
+    this.dialogRef.close();
+  }
+
+  // open() {
+  //   this.dialogService.open(CreateFolderDialogComponent)
+  //     .onClose.subscribe(folderNames => folderNames && this.folderName.push(folderName));
+  // }
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
 }
 

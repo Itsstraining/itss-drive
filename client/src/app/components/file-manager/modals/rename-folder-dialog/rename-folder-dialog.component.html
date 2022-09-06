@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- <nb-card>
   <nb-card-header>Rename folder</nb-card-header>
 
@@ -24,3 +25,23 @@
   <button mat-raised-button mat-dialog-close>Cancel</button>
   <button mat-raised-button [mat-dialog-close]="folderName" color="primary">OK</button>
 </mat-dialog-actions>
+=======
+<ng-template #dialog let-data let-ref="dialogRef">
+
+    <nb-card>
+      <nb-card-header>Rename folder</nb-card-header>
+
+      <nb-card-body>
+        <input type="text" nbInput placeholder="Enter folder name" [(ngModel)="folderName">
+      </nb-card-body>
+
+      <nb-card-footer>
+        <button nbButton status="primary" (click)="ref.close()">Cancel</button>
+        <button type="submit" nbButton status="danger" (click) ="ref.close()">OK</button>
+      </nb-card-footer>
+
+    </nb-card>
+</ng-template>
+
+  <button nbButton (click)="open(dialog)">Rename</button>
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3

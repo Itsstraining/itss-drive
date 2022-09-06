@@ -1,12 +1,19 @@
 import { Component, OnInit, ViewChild, HostListener, Input, Output, EventEmitter} from '@angular/core';
+<<<<<<< HEAD
 import { NbContextMenuDirective, NbDialogService, NbMenuService, NbTrigger} from '@nebular/theme';
+=======
+import { NbContextMenuDirective, NbDialogService, NbMenuService} from '@nebular/theme';
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
 import { RenameFolderDialogComponent } from '../modals/rename-folder-dialog/rename-folder-dialog.component';
 import { filter, map } from 'rxjs';
 import { CreateFolderDialogComponent } from '../modals/create-folder-dialog/create-folder-dialog.component';
 import { FileElement } from 'src/app/models/file-element.model';
+<<<<<<< HEAD
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 
+=======
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
 
 @Component({
   selector: 'app-file-explorer',
@@ -15,6 +22,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class FileExplorerComponent implements OnInit {
 
+<<<<<<< HEAD
   constructor(public dialog: NbDialogService,
     private nbMenuService: NbMenuService,
     public matdiaLog: MatDialog,
@@ -27,6 +35,11 @@ export class FileExplorerComponent implements OnInit {
     //     map(({ item: { title } }) => title),
     //   )
     //   .subscribe(title => this.openRenameDialog(eleme));
+=======
+  constructor(public dialog: NbDialogService) { }
+
+  ngOnInit(): void {
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
   }
   @Input() fileElements: FileElement[]
   @Input() canNavigateUp: string
@@ -47,10 +60,13 @@ export class FileExplorerComponent implements OnInit {
     this.elementRemoved.emit(element);
   }
 
+<<<<<<< HEAD
   starredElement(element: FileElement) {
 
   }
 
+=======
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
   navigate(element: FileElement) {
     if (element.isFolder) {
       this.navigatedDown.emit(element);
@@ -66,6 +82,7 @@ export class FileExplorerComponent implements OnInit {
   }
 
   openNewFolderDialog() {
+<<<<<<< HEAD
     this.dialog.open(CreateFolderDialogComponent)
     .onClose.subscribe(res => {
       if(res){
@@ -116,5 +133,28 @@ export class FileExplorerComponent implements OnInit {
   //   this.contextMenu.hide();
   // }
 
+=======
+    let dialogRef = this.dialog.open(CreateFolderDialogComponent);
+    dialogRef.onClose.subscribe(res => {
+      console.log(res);
+      if(res){
+        this.folderAdded.emit({name: res})
+        
+      }
+    })
+
+  }
+
+  openRenameDialog(element: FileElement) {
+    let dialogRef = this.dialog.open(RenameFolderDialogComponent);
+    dialogRef.onClose.subscribe(res => {
+      if(res){
+        element.name = res;
+        this.elementRenamed.emit(element);
+      }
+    })
+
+  }
+>>>>>>> d4946db217b4593fd028c0b9774bb96de99ea1b3
 
 }
