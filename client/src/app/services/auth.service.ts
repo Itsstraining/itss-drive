@@ -2,16 +2,23 @@ import { Injectable } from '@angular/core';
 import { GoogleAuthProvider } from 'firebase/auth';
 import {AngularFireAuth} from '@angular/fire/compat/auth'
 import { Router } from '@angular/router';
+import { Auth, authState } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  
-  
+  public user: any;
+  isLoggined = false;
 
-  constructor(private fireauth: AngularFireAuth, private router: Router) { }
-
+  constructor(private fireauth: AngularFireAuth, private router: Router, public auth: Auth) { 
+    if(auth){
+      authState(this.auth).subscribe((temp: any) =>{
+        this.user = temp;
+      });
+    }
+  }
+  
   //login method
   login(username: string, password: string){
     this.fireauth.signInWithEmailAndPassword(username,password). then(()=> {
