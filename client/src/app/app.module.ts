@@ -18,6 +18,7 @@ import { CreateFolderDialogComponent } from './components/file-manager/modals/cr
 import { RenameFolderDialogComponent } from './components/file-manager/modals/rename-folder-dialog/rename-folder-dialog.component';
 import { FormsModule } from '@angular/forms';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
-    FormsModule
+    FormsModule,
+    HotToastModule.forRoot()
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent]
