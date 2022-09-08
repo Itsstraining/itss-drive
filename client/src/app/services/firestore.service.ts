@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { doc, getDocFromCache } from "firebase/firestore";
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FileMetaData } from '../models/file-metadata.model';
@@ -28,26 +28,26 @@ export class FirestoreService {
     console.log(this.k);
 }            
 
-  saveMetaDateOfFolder(folderObj: FileElement)      {
+  saveMetaDateOfFolder(element: FileElement)      {
     const folderMeta = {
       id: '',
-      name: folderObj.name,
+      name: element.name,
       isFolder: true,
-      parent:'',
+      parent:'root',
       isStarred: false,
       createAt:'',
     }
     folderMeta.id = this.fireStore.createId();
-    this.fireStore.collection('/Folder').add(folderMeta)
+    this.fireStore.collection('/element').add(folderMeta)
   }      
-  public queryFetch : BehaviorSubject<FileElement[]>;
+
   getAllFolders() {
-    return this.fireStore.collection('/Folder').snapshotChanges();
+    return this.fireStore.collection('/element').snapshotChanges();
   }
 
   deleteFolders(folderMeta : FileElement) {
 
-    this.fireStore.collection('/Folder').doc(folderMeta.id).delete();
+    this.fireStore.collection('/element').doc(folderMeta.id).delete();
     this.fireStorage.ref('/Folder'+ folderMeta.name).delete();
 
   }
@@ -58,27 +58,31 @@ export class FirestoreService {
       id : '',
       name : fileObj.name,
       url : fileObj.url,
-      size : fileObj.size
+      size : fileObj.size,
+      isFolder: false,
+      parent:'root',
+      isStarred: false,
+      createAt:'',
     }
 
     fileMeta.id = this.fireStore.createId();
 
-    this.fireStore.collection('/Upload').add(fileMeta);
+    this.fireStore.collection('/element').add(fileMeta);
     
   }
 
   // dislpay all files
   getAllFiles() {
-    return this.fireStore.collection('/Upload').snapshotChanges();
+    return this.fireStore.collection('/element').snapshotChanges();
   }
 
   // delete file 
   deleteFile(fileMeta : FileMetaData) {
 
-    this.fireStore.collection('/Upload').doc(fileMeta.id).delete();
-    this.fireStorage.ref('/Uploads/'+ fileMeta.name).delete();
+    this.fireStore.collection('/element').doc(fileMeta.id).delete();
+    this.fireStorage.ref('/element/'+ fileMeta.name).delete();
 
   }
-
-
 }
+  
+
