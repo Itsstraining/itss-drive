@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-import { NbThemeModule, NbMenuModule, NbDialogModule, NbLayoutModule, NbSidebarModule } from '@nebular/theme';
+import { NbThemeModule, NbMenuModule, NbDialogModule, NbLayoutModule, NbSidebarModule, NbToastrModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { SharedModule } from './shared_modules/shared.module';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -35,6 +35,7 @@ import { ReactiveFormsModule} from '@angular/forms'
     NbEvaIconsModule,
     NbMenuModule.forRoot(),
     NbDialogModule.forRoot(),
+    NbToastrModule.forRoot(),
     SharedModule,
     NbLayoutModule,
     NbSidebarModule.forRoot(),

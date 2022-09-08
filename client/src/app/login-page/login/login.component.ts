@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-
 import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Auth, authState, GoogleAuthProvider, signInWithPopup, signOut, User } from '@angular/fire/auth';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { Observable } from 'rxjs/internal/Observable';
+import { EMPTY } from 'rxjs/internal/observable/empty';
 import { AuthService } from 'src/app/services/auth.service';
-
-
-
 
 
 @Component({
@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
   //     this.userDisposable.unsubscribe();
   //   }
   // }
-  login (){
+  login(){
     if(this.username == ''){
       alert('Please enter username');
       return;
@@ -66,8 +66,6 @@ export class LoginComponent implements OnInit {
     if(this.password == ''){
       alert('Please enter password');
     }
-    
-    
 
     this.auth.login(this.username,this.password);
     this.username;

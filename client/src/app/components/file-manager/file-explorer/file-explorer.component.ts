@@ -1,9 +1,13 @@
 import { Component, OnInit, ViewChild, HostListener, Input, Output, EventEmitter} from '@angular/core';
-import { NbContextMenuDirective, NbDialogService, NbMenuService} from '@nebular/theme';
+import { NbContextMenuDirective, NbDialogService, NbMenuService, NbTrigger} from '@nebular/theme';
 import { RenameFolderDialogComponent } from '../modals/rename-folder-dialog/rename-folder-dialog.component';
 import { filter, map } from 'rxjs';
 import { CreateFolderDialogComponent } from '../modals/create-folder-dialog/create-folder-dialog.component';
 import { FileElement } from 'src/app/models/file-element.model';
+import { MatMenuTrigger } from '@angular/material/menu';
+import { MatDialog } from '@angular/material/dialog';
+import { FirestoreService } from 'src/app/services/firestore.service';
+
 
 @Component({
   selector: 'app-file-explorer',
@@ -12,7 +16,11 @@ import { FileElement } from 'src/app/models/file-element.model';
 })
 export class FileExplorerComponent implements OnInit {
 
-  constructor(public dialog: NbDialogService) { }
+  constructor(public dialog: NbDialogService,
+    private nbMenuService: NbMenuService,
+    public matdiaLog: MatDialog,
+    private firesStoreService: FirestoreService
+) { }
 
   ngOnInit(): void {
   }
@@ -35,6 +43,10 @@ export class FileExplorerComponent implements OnInit {
     this.elementRemoved.emit(element);
   }
 
+  starredElement(element: FileElement) {
+
+  }
+
   navigate(element: FileElement) {
     if (element.isFolder) {
       this.navigatedDown.emit(element);
@@ -50,26 +62,27 @@ export class FileExplorerComponent implements OnInit {
   }
 
   openNewFolderDialog() {
-    let dialogRef = this.dialog.open(CreateFolderDialogComponent);
-    dialogRef.onClose.subscribe(res => {
-      console.log(res);
+    this.dialog.open(CreateFolderDialogComponent)
+    .onClose.subscribe(res => {
       if(res){
         this.folderAdded.emit({name: res})
-        
+        this.firesStoreService.saveMetaDateOfFolder({name: res})
       }
     })
-
   }
 
   openRenameDialog(element: FileElement) {
-    let dialogRef = this.dialog.open(RenameFolderDialogComponent);
-    dialogRef.onClose.subscribe(res => {
-      if(res){
+    let dialogRef = this.matdiaLog.open(RenameFolderDialogComponent);
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
         element.name = res;
         this.elementRenamed.emit(element);
       }
-    })
-
+    });
+  }
+  openMenu(event: MouseEvent, element: FileElement, viewChild: MatMenuTrigger) {
+    event.preventDefault();
+    viewChild.openMenu();
   }
 
 }
