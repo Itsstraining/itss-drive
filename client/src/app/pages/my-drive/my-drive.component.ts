@@ -26,9 +26,13 @@ export class MyDriveComponent implements OnInit{
   count:number;
   ngOnInit() {
     this.getAllFolders();
+    if(!this.fileService.dataLength){
+      this.fileService.querySubject.subscribe(res => console.log(res))
+    }
+    this.firestoreService.getStatistics();
+    console.log(this.firestoreService.k)
     this.updateFileElementQuery();
   }
-
 
   addFolder(folder: { name: string }) {
     this.fileService.add({ isFolder: true, name: folder.name, parent: this.currentRoot ? this.currentRoot.id : 'root' });
@@ -85,6 +89,7 @@ export class MyDriveComponent implements OnInit{
     }, err => {
         console.log('Error occured while fetching file meta data');
     })
+    this.updateFileElementQuery();
   }
 
   deleteFolder(folder : FileElement) {

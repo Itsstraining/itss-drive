@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { v4 } from 'uuid';
 import { FileElement } from '../models/file-element.model';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { FirestoreService } from './firestore.service';
 
 export interface IFileService {
   get?(id: string): FileElement;
@@ -17,7 +18,12 @@ export interface IFileService {
 @Injectable()
 
 export class FileManagerService implements IFileService{
+  dataLength = 0;
+  constructor(private firestoreService: FirestoreService){}
   private map = new Map<string, FileElement>();
+  getData(){
+    this.querySubject.subscribe(res => this.dataLength = res.length)
+  }
   add(fileElement: FileElement) {
     fileElement.id = v4();
     this.map.set(fileElement.id, this.clone(fileElement));
@@ -34,7 +40,7 @@ export class FileManagerService implements IFileService{
     this.map.set(element.id, element);
   }
 
-  private querySubject: BehaviorSubject<FileElement[]>;
+  public querySubject: BehaviorSubject<FileElement[]>;
   queryInFolder(folderId: string) {
     const result: FileElement[] = [];
     this.map.forEach(element => {

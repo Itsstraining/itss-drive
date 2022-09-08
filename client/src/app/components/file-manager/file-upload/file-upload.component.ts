@@ -20,16 +20,10 @@ export class FileUploadComponent implements OnInit {
   percentage: number = 0;
 
   listOfFiles : FileMetaData[] = [];
-  private index: number = 0;
-  @HostBinding('class')
-  classes = 'example-items-rows';
 
-  physicalPositions = NbGlobalPhysicalPosition;
-  logicalPositions = NbGlobalLogicalPosition;
 
   constructor(private fireStoreService: FirestoreService,
               private fireStorage: AngularFireStorage,
-              private toastrService: NbToastrService,
               ) { }
 
   ngOnInit(): void {
