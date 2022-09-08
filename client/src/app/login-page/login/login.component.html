@@ -2,16 +2,7 @@
 <div class="form">
   <form [formGroup]="form" (ngSubmit)="submit()">
     <input matInput placeholder="Email address" formControlName="email" />
-      <mat-error *ngIf="email?.errors?.['required']">
-        Email address is required
-      </mat-error>
-      <mat-error *ngIf="email?.errors?.['email']">
-        Please enter a valid email address
-      </mat-error>
       <input matInput type="password" placeholder="Password" formControlName="password" />
-      <mat-error *ngIf="password?.errors?.['required']">
-        Password is required
-      </mat-error>
 
     <button type="button" class="btn btn-info" (click)="submit()" >Log in</button>
     <div>
