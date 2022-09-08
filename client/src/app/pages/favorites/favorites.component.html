@@ -1,7 +1,102 @@
-<div style="height: 100%; box-sizing: border-box;">
-    <mat-card style="height: 100%; box-sizing: border-box; padding:0">
-      <app-file-explorer [fileElements]="fileElements | async" [path]="currentPath" canNavigateUp="canNavigateUp" (folderAdded)="addFolder($event)"
-        (elementRemoved)="removeElement($event)" (navigatedDown)="navigateToFolder($event)" (navigatedUp)="navigateUp()" (elementRenamed)="renameElement($event)"
-        (elementMoved)="moveElement($event)"></app-file-explorer>
-    </mat-card>
+<div class="home-container">
+    <div
+      style="
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      "
+    >
+      <div class="recommend">
+        <p style="margin: 0; padding-bottom: 15px">Gắn dấu sao</p>
+        <div class="body-container">
+          <div class="preview-item">
+            <div class="preview-recommend-img">
+              <img src="../../../assets/images/itss.png" alt="" />
+            </div>
+            <div class="preview-recommend-title">
+              <div class="preview-recommend-top-title">
+                <img class="logo" src="../../../assets/images/itss.png" alt="" />
+                <p>Acc liên minh.docx</p>
+              </div>
+              <p>Bạn đã mở hôm nay</p>
+            </div>
+          </div>
+          <div class="preview-item">
+              <div class="preview-recommend-img">
+                <img src="../../../assets/images/itss.png" alt="" />
+              </div>
+              <div class="preview-recommend-title">
+                <div class="preview-recommend-top-title">
+                  <img class="logo" src="../../../assets/images/doc.png" alt="" />
+                  <p>Acc liên minh.docx</p>
+                </div>
+                <p>Bạn đã mở hôm nay</p>
+              </div>
+            </div>
+            <div class="preview-item">
+              <div class="preview-recommend-img">
+                <img src="../../../assets/images/itss.png" alt="" />
+              </div>
+              <div class="preview-recommend-title">
+                <div class="preview-recommend-top-title">
+                  <img class="logo" src="../../../assets/images/doc.png" alt="" />
+                  <p>Acc liên minh.docx</p>
+                </div>
+                <p>Bạn đã mở hôm nay</p>
+              </div>
+            </div>
+            <div class="preview-item">
+              <div class="preview-recommend-img">
+                <img src="../../../assets/images/itss.png" alt="" />
+              </div>
+              <div class="preview-recommend-title">
+                <div class="preview-recommend-top-title">
+                  <img class="logo" src="../../../assets/images/doc.png" alt="" />
+                  <p>Acc liên minh.docx</p>
+                </div>
+                <p>Bạn đã mở hôm nay</p>
+              </div>
+            </div>
+            <div class="preview-item">
+              <div class="preview-recommend-img">
+                <img src="../../../assets/images/itss.png" alt="" />
+              </div>
+              <div class="preview-recommend-title">
+                <div class="preview-recommend-top-title">
+                  <img class="logo" src="../../../assets/images/doc.png" alt="" />
+                  <p>Acc liên minh.docx</p>
+                </div>
+                <p>Bạn đã mở hôm nay</p>
+              </div>
+            </div>
+            <div class="preview-item">
+              <div class="preview-recommend-img">
+                <img src="../../../assets/images/itss.png" alt="" />
+              </div>
+              <div class="preview-recommend-title">
+                <div class="preview-recommend-top-title">
+                  <img class="logo" src="../../../assets/images/doc.png" alt="" />
+                  <p>Acc liên minh.docx</p>
+                </div>
+                <p>Bạn đã mở hôm nay</p>
+              </div>
+            </div>
+            <div class="preview-item">
+              <div class="preview-recommend-img">
+                <img src="../../../assets/images/itss.png" alt="" />
+              </div>
+              <div class="preview-recommend-title">
+                <div class="preview-recommend-top-title">
+                  <img class="logo" src="../../../assets/images/doc.png" alt="" />
+                  <p>Acc liên minh.docx</p>
+                </div>
+                <p>Bạn đã mở hôm nay</p>
+              </div>
+            </div>
+        </div>
+  
+      </div>
+    </div>
   </div>
+  
