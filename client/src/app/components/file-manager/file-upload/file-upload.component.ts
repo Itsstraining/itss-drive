@@ -3,7 +3,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs';
 import { FileMetaData } from 'src/app/models/file-metadata.model';
 import { FirestoreService } from 'src/app/services/firestore.service';
-import { FileSizePipe } from './file-size';
+import { FileSizePipe } from 'src/app/pipes/file-size.pipe';
 import { NbGlobalLogicalPosition, NbGlobalPhysicalPosition, NbGlobalPosition, NbToastrService } from '@nebular/theme';
 
 @Component({
@@ -20,20 +20,14 @@ export class FileUploadComponent implements OnInit {
   percentage: number = 0;
 
   listOfFiles : FileMetaData[] = [];
-  private index: number = 0;
-  @HostBinding('class')
-  classes = 'example-items-rows';
 
-  physicalPositions = NbGlobalPhysicalPosition;
-  logicalPositions = NbGlobalLogicalPosition;
 
   constructor(private fireStoreService: FirestoreService,
               private fireStorage: AngularFireStorage,
-              private toastrService: NbToastrService,
               ) { }
 
   ngOnInit(): void {
-    this.getAllFiles();
+    this.getStarredElement();
   }
 
   selectFile(event: any) {
@@ -42,7 +36,7 @@ export class FileUploadComponent implements OnInit {
 
   uploadFile() {
      this.currentFileUpload =  new FileMetaData(this.selectedFiles[0]);
-     const path = 'Uploads/'+ this.currentFileUpload.file.name;
+     const path = 'element/'+ this.currentFileUpload.file.name;
 
      const storageRef = this.fireStorage.ref(path);
      const uploadTask = storageRef.put(this.selectedFiles[0]);
@@ -66,7 +60,7 @@ export class FileUploadComponent implements OnInit {
 
   }
 
-  getAllFiles() {
+  getStarredElement() {
     this.fireStoreService.getAllFiles().subscribe( res => {
         this.listOfFiles = res.map((e : any) => {
             const data = e.payload.doc.data();
