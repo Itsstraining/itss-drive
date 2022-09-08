@@ -1,18 +1,52 @@
 <h1 style="text-align: center ;">Sign up</h1>
-<div class="form" (ngSubmit) = "signup()">
-    <input type="Full name" name="Full name"  placeholder="Full name">                      
-    <input type="username" name="username" placeholder="username" />
-    <input type="Email" name="Email" placeholder="Email">
-      <input type="Password" name="Password" placeholder="Password" />
-      <input type="Password" name="Password confirm" placeholder="Password confirm">
+<div class="form">
+  <form [formGroup]="form" (ngSubmit)="submit()">                
+    <mat-form-field>
+      <input matInput placeholder="Username" formControlName="username" />
+      <mat-error *ngIf="username?.errors?.['required']">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email address" formControlName="email" />
+      <mat-error *ngIf="email?.errors?.['required']">
+        Email address is required
+      </mat-error>
+      <mat-error *ngIf="email?.errors?.['email']">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <mat-error *ngIf="password?.errors?.['required']">
+        Password is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="password"
+        placeholder="Confirm Password"
+        formControlName="Passwordconfirm"
+      />
+      <mat-error *ngIf="Passwordconfirm?.errors?.['required']">
+        Confirm Password is required
+      </mat-error>
+    </mat-form-field>
+    <mat-error *ngIf="form.errors?.['passwordsDontMatch']">
+        Passwords should match
+    </mat-error>
       <h4>Date of birth</h4>
        <input type="date" name="Date of birth" placeholder="Date of birth">
-      <button type="button" class="btn btn-info" (click)="signup()" routerLink="/login" >Create</button>
-       
-    
-       
-    
+      <button type="submit" class="btn btn-info" (click)="submit()">Create</button>
+    </form>
     </div> 
+  
      <!-- <p class="message">Have a problem? <a href="https://www.itss.edu.vn/">Contact us</a></p> -->
      <div style="display: flex; justify-content: center;">
         <p class="message">Have a problem? <a href="https://www.itss.edu.vn/">Contact us</a></p>

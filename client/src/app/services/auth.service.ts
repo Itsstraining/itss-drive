@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import {AngularFireAuth} from '@angular/fire/compat/auth'
 import { Router } from '@angular/router';
-import { Auth, authState } from '@angular/fire/auth';
-import { from } from 'rxjs';
+import { Auth, authState, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { from, switchMap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
  currentUser$ = authState(this.auth);
-  
+ public user: any;
+ isLoggined = false;
 
   constructor(private fireauth: AngularFireAuth, private router: Router, private auth: Auth) {
     if(auth){
@@ -18,18 +19,18 @@ export class AuthService {
       });
     }
    }
-   public user: any;
-   isLoggined = false;
+   
   //login method
   //login method
-  login(username: string, password: string){
-    this.fireauth.signInWithEmailAndPassword(username,password). then(()=> {
-        localStorage.setItem('token','true');
-        this.router.navigate(['/main']);
-    }, err=> {
-        alert(err.message);
-        this.router.navigate(['/login']);
-    } )
+  login(email: string, password: string){
+    // this.fireauth.signInWithEmailAndPassword(username,password). then(()=> {
+    //     localStorage.setItem('token','true');
+    //     this.router.navigate(['/main']);
+    // }, err=> {
+    //     alert(err.message);
+    //     this.router.navigate(['/login']);
+    // } )
+    return from(signInWithEmailAndPassword(this.auth, email, password));
   }
 
   logout(){
@@ -40,23 +41,18 @@ export class AuthService {
   }
   
   //sign up
-  signup(username:string, password:string){
-   return from (this.fireauth.createUserWithEmailAndPassword(username, password).then(()=> {
-    this.fireauth.createUserWithEmailAndPassword(username, password).then(()=> {
-      alert('Sign up successful');
-      this.router.navigate(['/login']);
-    }, err=>{
-      alert(err.message);
-      this.router.navigate(['/signup']);
-    })
-  }))
+  signup(username:string,email:string, password:string){
+   return from(
+      createUserWithEmailAndPassword(this.auth, email, password)
+      ).pipe(switchMap(({ user }) => updateProfile(user, { displayName: username })));
 }
 
   SignInWithGoogle(){
     return this.fireauth.signInWithPopup(new GoogleAuthProvider).then(res=> {
-    this.router.navigate(['/main']);
-    localStorage.setItem('token', JSON.stringify(res.user?.uid));
+      this.router.navigate(['/main']);
+      localStorage.setItem('token', JSON.stringify(res.user?.uid));
     }, err =>{
       alert(err.message)
     })
   }
+}

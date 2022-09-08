@@ -1,13 +1,19 @@
 <h1 style="text-align: center;">Log in</h1>
 <div class="form">
-                             
-  <input type="username" name="username" placeholder="username"  />
-  
-     
-    <input type="password" name="Password" placeholder="Password" />
-  
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <input matInput placeholder="Email address" formControlName="email" />
+      <mat-error *ngIf="email?.errors?.['required']">
+        Email address is required
+      </mat-error>
+      <mat-error *ngIf="email?.errors?.['email']">
+        Please enter a valid email address
+      </mat-error>
+      <input matInput type="password" placeholder="Password" formControlName="password" />
+      <mat-error *ngIf="password?.errors?.['required']">
+        Password is required
+      </mat-error>
 
-    <button type="button" class="btn btn-info" (click)="login()" >Log in</button>
+    <button type="button" class="btn btn-info" (click)="submit()" >Log in</button>
     <div>
       <a routerLink="/sign-up">Register</a>
     </div>
@@ -17,6 +23,8 @@
         <p> Sign In with Google</p>
       </a>
   </div>
+  </form>             
+  
    
 
   </div> 
