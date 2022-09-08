@@ -7,12 +7,15 @@ import { FileElement } from 'src/app/models/file-element.model';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { FirestoreService } from 'src/app/services/firestore.service';
-
+import { StringLimitPipe } from 'src/app/pipes/limitTo.pipe';
 
 @Component({
   selector: 'app-file-explorer',
   templateUrl: './file-explorer.component.html',
-  styleUrls: ['./file-explorer.component.scss']
+  styleUrls: ['./file-explorer.component.scss'],
+  providers: [
+    StringLimitPipe
+  ],
 })
 export class FileExplorerComponent implements OnInit {
 
@@ -35,6 +38,9 @@ export class FileExplorerComponent implements OnInit {
     element: FileElement
     moveTo: FileElement
   }>()
+  @Output() elementStar = new EventEmitter <{ change : boolean}>()
+
+
   @Output() navigatedDown = new EventEmitter<FileElement>()
   @Output() navigatedUp = new EventEmitter()
 
@@ -43,7 +49,7 @@ export class FileExplorerComponent implements OnInit {
     this.elementRemoved.emit(element);
   }
 
-  starredElement(element: FileElement) {
+  starredElement(element: boolean) {
 
   }
 
