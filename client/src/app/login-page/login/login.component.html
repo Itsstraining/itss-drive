@@ -1,13 +1,13 @@
 <h1 style="text-align: center;">Log in</h1>
-<div class="form" (ngSubmit) = "submit()">
+<div class="form" (ngSubmit) = "login()" >
                              
   <input type="username" name="username" placeholder="username"  />
-  
+ 
      
     <input type="password" name="Password" placeholder="Password" />
-  
+    
 
-    <button type="button" class="btn btn-info" (click)="login" >Log in</button>
+    <button type="button" class="btn btn-info" (click)="login()" >Log in</button>
     <div>
       <a routerLink="/sign-up">Register</a>
     </div>

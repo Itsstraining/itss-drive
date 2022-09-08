@@ -19,7 +19,8 @@ import { RenameFolderDialogComponent } from './components/file-manager/modals/re
 import { FormsModule } from '@angular/forms';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { HotToastModule } from '@ngneat/hot-toast';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule} from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -42,6 +43,8 @@ import { HotToastModule } from '@ngneat/hot-toast';
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
     FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     HotToastModule.forRoot()
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
