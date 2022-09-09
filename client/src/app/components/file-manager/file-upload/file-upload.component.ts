@@ -5,6 +5,7 @@ import { FileMetaData } from 'src/app/models/file-metadata.model';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { FileSizePipe } from 'src/app/pipes/file-size.pipe';
 import { NbGlobalLogicalPosition, NbGlobalPhysicalPosition, NbGlobalPosition, NbToastrService } from '@nebular/theme';
+import { FileElement } from 'src/app/models/file-element.model';
 
 @Component({
   selector: 'app-file-upload',
@@ -61,7 +62,7 @@ export class FileUploadComponent implements OnInit {
   }
 
   getStarredElement() {
-    this.fireStoreService.getAllFiles().subscribe( res => {
+    this.fireStoreService.getAllElements().subscribe( res => {
         this.listOfFiles = res.map((e : any) => {
             const data = e.payload.doc.data();
             data.id = e.payload.doc.id;
@@ -73,10 +74,10 @@ export class FileUploadComponent implements OnInit {
     })
   }
 
-  deleteFile(file : FileMetaData) {
+  deleteFile(file : FileMetaData | FileElement) {
 
     if(window.confirm('Are you sure you want to delete '+ file.name   + '?')) {
-      this.fireStoreService.deleteFile(file);
+      this.fireStoreService.deleteElement(file);
       this.ngOnInit();
    }
   }

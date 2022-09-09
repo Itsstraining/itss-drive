@@ -27,6 +27,7 @@ import { FileSizePipe } from 'src/app/pipes/file-size.pipe';
   ],
   providers:[
     FileManagerService,
+    FileUploadComponent,
   ]
 })
 export class MyDriveModule { }

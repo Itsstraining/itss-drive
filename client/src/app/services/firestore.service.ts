@@ -41,14 +41,14 @@ export class FirestoreService {
     this.fireStore.collection('/element').add(folderMeta)
   }      
 
-  getAllFolders() {
+  getAllElements() {
     return this.fireStore.collection('/element').snapshotChanges();
   }
 
-  deleteFolders(folderMeta : FileElement) {
+  deleteElement(element : FileElement | FileMetaData) {
 
-    this.fireStore.collection('/element').doc(folderMeta.id).delete();
-    this.fireStorage.ref('/Folder'+ folderMeta.name).delete();
+    this.fireStore.collection('/element').doc(element.id).delete();
+    this.fireStorage.ref('/Folder'+ element.name).delete();
 
   }
 
@@ -70,19 +70,7 @@ export class FirestoreService {
     this.fireStore.collection('/element').add(fileMeta);
     
   }
-
-  // dislpay all files
-  getAllFiles() {
-    return this.fireStore.collection('/element').snapshotChanges();
-  }
-
-  // delete file 
-  deleteFile(fileMeta : FileMetaData) {
-
-    this.fireStore.collection('/element').doc(fileMeta.id).delete();
-    this.fireStorage.ref('/element/'+ fileMeta.name).delete();
-
-  }
 }
+
   
 
