@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [
   ],
@@ -38,6 +39,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatToolbarModule,
     MatButtonModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
   ],
 
   exports: [
@@ -62,7 +64,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatGridListModule,
     MatToolbarModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule,
   ],
 })
 export class SharedModule { }
