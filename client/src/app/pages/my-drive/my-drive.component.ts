@@ -6,6 +6,7 @@ import { FileManagerService } from 'src/app/services/file-manager.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FileMetaData } from 'src/app/models/file-metadata.model';
+import { NbCalendarPageableNavigationComponent } from '@nebular/theme';
 
 @Component({
   selector: 'app-my-drive',
@@ -86,6 +87,7 @@ export class MyDriveComponent implements OnInit{
 
   getAllElements() {
     this.firestoreService.getAllFolders().subscribe( res => {
+      this.fileService.map.clear()
         this.listOfElements = res.map((e : any) => {
             const data = e.payload.doc.data();
             data.id = e.payload.doc.id;

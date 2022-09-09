@@ -23,7 +23,7 @@ export class FileManagerService implements IFileService{
     private afs: AngularFirestore) {}
   dataLength = 0;
 
-  private map = new Map<string, FileElement>();
+  public map = new Map<string, FileElement>();
   getData(){
     this.querySubject.subscribe(res => {this.dataLength = res.length})
   }
