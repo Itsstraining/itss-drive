@@ -5,6 +5,7 @@ import { FileMetaData } from 'src/app/models/file-metadata.model';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { FileSizePipe } from 'src/app/pipes/file-size.pipe';
 import { NbGlobalLogicalPosition, NbGlobalPhysicalPosition, NbGlobalPosition, NbToastrService } from '@nebular/theme';
+import { FileElement } from '../../../models/file-element.model';
 
 @Component({
   selector: 'app-file-upload',
@@ -32,7 +33,7 @@ export class FileUploadComponent implements OnInit {
 
   selectFile(event: any) {
     this.selectedFiles = event.target.files;
-  }
+    }
 
   uploadFile() {
      this.currentFileUpload =  new FileMetaData(this.selectedFiles[0]);
@@ -80,4 +81,13 @@ export class FileUploadComponent implements OnInit {
       this.ngOnInit();
    }
   }
+
+  
+  deleteElement(element : FileElement | FileMetaData) {
+    if(window.confirm('Are you sure you want to delete '+ element.name   + '?')) {
+      this.fireStoreService.deleteElement(element);
+      this.ngOnInit();
+   }
+  }
 }
+

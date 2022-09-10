@@ -9,6 +9,7 @@ import { FileManagerService } from 'src/app/services/file-manager.service';
 import { FileExplorerModule } from 'src/app/components/file-manager/file-explorer/file-explorer.module';
 import { FileUploadComponent } from 'src/app/components/file-manager/file-upload/file-upload.component';
 import { FileSizePipe } from 'src/app/pipes/file-size.pipe';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
 
 
@@ -27,6 +28,8 @@ import { FileSizePipe } from 'src/app/pipes/file-size.pipe';
   ],
   providers:[
     FileManagerService,
+    FirestoreService,
+    FileUploadComponent,
   ]
 })
 export class MyDriveModule { }

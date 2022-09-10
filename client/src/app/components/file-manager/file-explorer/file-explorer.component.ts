@@ -8,6 +8,9 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { StringLimitPipe } from 'src/app/pipes/limitTo.pipe';
+import { FileUploadComponent } from '../file-upload/file-upload.component';
+import { FileMetaData } from 'src/app/models/file-metadata.model';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-file-explorer',
@@ -20,9 +23,9 @@ import { StringLimitPipe } from 'src/app/pipes/limitTo.pipe';
 export class FileExplorerComponent implements OnInit {
 
   constructor(public dialog: NbDialogService,
-    private nbMenuService: NbMenuService,
     public matdiaLog: MatDialog,
-    private firesStoreService: FirestoreService
+    private firesStoreService: FirestoreService,
+    private fireStoreService: FirestoreService,
 ) { }
 
   ngOnInit(): void {
@@ -44,10 +47,20 @@ export class FileExplorerComponent implements OnInit {
   @Output() navigatedDown = new EventEmitter<FileElement>()
   @Output() navigatedUp = new EventEmitter()
 
-
-  deleteElement(element: FileElement) {
-    this.elementRemoved.emit(element);
+    
+  deleteElement(element : FileElement | FileMetaData) {
+    if(window.confirm('Are you sure you want to delete '+ element.name   + '?')) {
+      this.elementRemoved.emit(element);
+      this.fireStoreService.deleteElement(element);
+      // this.ngOnInit();
+   }
   }
+
+
+  // deleteElement(element: FileElement) {
+  //   this.elementRemoved.emit(element);
+  //   this.fileUploadCom.deleteElement(element);
+  // }
 
   starredElement(element: boolean) {
 

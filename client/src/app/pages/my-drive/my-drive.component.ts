@@ -100,10 +100,10 @@ export class MyDriveComponent implements OnInit{
     })
   }
 
-  deleteElement(folder : FileElement) {
+  deleteElement(element : FileElement | FileMetaData) {
 
-    if(window.confirm('Are you sure you want to delete '+ folder.name   + '?')) {
-      this.firestoreService.deleteFolders(folder);
+    if(window.confirm('Are you sure you want to delete '+ element.name   + '?')) {
+      this.firestoreService.deleteElement(element);
       this.ngOnInit();
    }
   }

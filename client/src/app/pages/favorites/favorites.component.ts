@@ -25,14 +25,14 @@ export class FavoritesComponent implements OnInit {
     canNavigateUp = false;
     count:number;
     ngOnInit() {
-      const folderA = this.fileService.add({ name: 'Folder A', isFolder: true, parent: 'root' });
-      this.fileService.add({ name: 'Folder B', isFolder: true, parent: 'root' });
-      this.fileService.add({ name: 'Folder C', isFolder: true, parent: folderA.id });
-      this.fileService.add({ name: 'File A', isFolder: false, parent: 'root' });
-      this.fileService.add({ name: 'File B', isFolder: false, parent: 'root' });
+      // const folderA = this.fileService.add({ name: 'Folder A', isFolder: true, parent: 'root' });
+      // this.fileService.add({ name: 'Folder B', isFolder: true, parent: 'root' });
+      // this.fileService.add({ name: 'Folder C', isFolder: true, parent: folderA.id });
+      // this.fileService.add({ name: 'File A', isFolder: false, parent: 'root' });
+      // this.fileService.add({ name: 'File B', isFolder: false, parent: 'root' });
   
-      this.updateFileElementQuery();
-      this.fileService.querySubject.subscribe(res => console.log(res))
+      // this.updateFileElementQuery();
+      // this.fileService.querySubject.subscribe(res => console.log(res))
     }
   
   
@@ -98,7 +98,7 @@ export class FavoritesComponent implements OnInit {
     deleteFolder(folder : FileElement) {
   
       if(window.confirm('Are you sure you want to delete '+ folder.name   + '?')) {
-        this.firestoreService.deleteFolders(folder);
+        this.firestoreService.deleteElement(folder);
         this.ngOnInit();
      }
     }

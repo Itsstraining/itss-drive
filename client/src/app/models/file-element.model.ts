@@ -5,6 +5,8 @@ export interface FileElement{
     parent?: string;
     isStarred?: boolean;
     createAt?: string;
+    size? : number;
+    url? : string;
 }
 
 // export class FileElement{

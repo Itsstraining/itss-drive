@@ -5,7 +5,7 @@
   <mat-icon class="pointer" (click)="openNewFolderDialog()">create_new_folder</mat-icon>
 </mat-toolbar>
 
-<div class="container">
+<div class="container" >
   <div class="content">
     <mat-grid-list cols="4" rowHeight="100px">
       <mat-grid-tile *ngFor="let element of fileElements" class=file-or-folder>
@@ -15,7 +15,7 @@
           <mat-icon color="primary" class="file-or-folder-icon pointer" *ngIf="element.isFolder">folder</mat-icon>
           <mat-icon color="primary" class="file-or-folder-icon pointer" *ngIf="!element.isFolder">insert_drive_file
           </mat-icon>
-          <span>{{element.name | limitToPipe :15}}</span>
+          <div id="element-name">{{element.name | limitToPipe :8}}</div>
         </div>
       </mat-grid-tile>
     </mat-grid-list>
@@ -36,7 +36,7 @@
       <mat-icon>delete</mat-icon>
       <span>Delete</span>
     </button>
-    <button mat-menu-item (click)="starredElement(element)">
+    <button mat-menu-item (click)="(element)">
       <mat-icon>star</mat-icon>
       <span>Mark as favorites</span>
     </button>
