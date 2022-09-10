@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { GoogleAuthProvider, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import {AngularFireAuth} from '@angular/fire/compat/auth'
+import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { Router } from '@angular/router';
 import { Auth, authState, createUserWithEmailAndPassword } from '@angular/fire/auth';
-import { from, switchMap } from 'rxjs';
+import { from, switchMap, Observable } from 'rxjs';
+import { User } from 'src/app/models/user.model';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
- currentUser$ = authState(this.auth);
+ currentUser$ = authState(this.auth); 
  public user: any;
  isLoggined = false;
 
@@ -32,6 +33,7 @@ export class AuthService {
     // } )
     return from(signInWithEmailAndPassword(this.auth, email, password));
   }
+  
 
   logout(){
     this.fireauth.signOut().then(()=> {

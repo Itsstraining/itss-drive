@@ -1,38 +1,42 @@
 button {
-    border-radius: 100px;
-      border: none;
-      background: #719BE6;
-      width: 15%;
-      padding: 15px;
-      color: #FFFFFF;
-      // margin-top: 15px;
-      box-shadow: 0 2px 10px -3px #719BE6;
-      display: block;
-      margin: 30px auto 10px auto;
-      font-size: 30px;
-    }
+
+  border-radius: 100px;
+    border: none;
+    background: #719BE6;
+    width: 15%;
+    padding: 15px;
+    color: #FFFFFF;
+    // margin-top: 15px;
+    box-shadow: 0 2px 10px -3px #719BE6;
+    display: block;
+    margin: 30px auto 10px auto;
+    font-size: 30px;
+  }
 
 img{
-  width: 300px;
-  margin-top: 5px;
-  margin-left: 10px;
+width: 300px;
+margin-top: 5px;
+margin-left: 10px;
 }
 .content{
-  margin-top: 250px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+margin-top: 250px;
+margin-left: 10px;
+margin-right: 10px;
+margin-bottom: 10px;
 }
 h1{
-  font-size: 60px;
-  font-weight: 600;
-  // color: #719BE6;
-  margin-bottom: 10px;
+font-size: 60px;
+font-weight: 600;
+// color: #719BE6;
+margin-bottom: 10px;
+letter-spacing: 10px;
+-webkit-text-stroke: 1px black;
 }
 
 #signup{
-  font-size: 20px;
-  margin-left: 2px;
-  color: blue;
-  text-align: center;
+font-size: 20px;
+margin-left: 2px;
+color: cyan;
+text-align: center;
+
 }

@@ -12,6 +12,7 @@ import { FileSizePipe } from 'src/app/pipes/file-size.pipe';
 
 
 
+
 @NgModule({
   declarations: [
     MyDriveComponent,
@@ -27,6 +28,7 @@ import { FileSizePipe } from 'src/app/pipes/file-size.pipe';
   ],
   providers:[
     FileManagerService,
+    FileUploadComponent,
   ]
 })
 export class MyDriveModule { }

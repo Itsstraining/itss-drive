@@ -8,6 +8,8 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { StringLimitPipe } from 'src/app/pipes/limitTo.pipe';
+import { FileUploadComponent } from '../file-upload/file-upload.component';
+import { FileMetaData } from 'src/app/models/file-metadata.model';
 
 @Component({
   selector: 'app-file-explorer',
@@ -20,13 +22,15 @@ import { StringLimitPipe } from 'src/app/pipes/limitTo.pipe';
 export class FileExplorerComponent implements OnInit {
 
   constructor(public dialog: NbDialogService,
-    private nbMenuService: NbMenuService,
+    private fileUploadCom: FileUploadComponent,
     public matdiaLog: MatDialog,
-    private firesStoreService: FirestoreService
+    private firesStoreService: FirestoreService,
+    
 ) { }
 
   ngOnInit(): void {
   }
+  @Input() fileMetaDatas: FileMetaData[]
   @Input() fileElements: FileElement[]
   @Input() canNavigateUp: string
   @Input() path: string
@@ -45,9 +49,17 @@ export class FileExplorerComponent implements OnInit {
   @Output() navigatedUp = new EventEmitter()
 
 
-  deleteElement(element: FileElement) {
+  deleteElement(element: FileElement | FileMetaData) {
     this.elementRemoved.emit(element);
+    this.firesStoreService.deleteElement(element);
+    this.ngOnInit();
   }
+
+
+  // deleteElement(element: FileElement) {
+  //   this.elementRemoved.emit(element);
+  //   this.fileUploadCom.deleteElement(element);
+  // }
 
   starredElement(element: boolean) {
 
@@ -63,7 +75,7 @@ export class FileExplorerComponent implements OnInit {
     this.navigatedUp.emit();
   }
 
-  moveElement(element: FileElement, moveTo: FileElement) {
+  moveElement(element: FileElement | FileMetaData, moveTo: FileElement) {
     this.elementMoved.emit({ element: element, moveTo: moveTo });
   }
 
@@ -77,7 +89,7 @@ export class FileExplorerComponent implements OnInit {
     })
   }
 
-  openRenameDialog(element: FileElement) {
+  openRenameDialog(element: FileElement | FileMetaData) {
     let dialogRef = this.matdiaLog.open(RenameFolderDialogComponent);
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
@@ -86,7 +98,7 @@ export class FileExplorerComponent implements OnInit {
       }
     });
   }
-  openMenu(event: MouseEvent, element: FileElement, viewChild: MatMenuTrigger) {
+  openMenu(event: MouseEvent, element: FileElement | FileMetaData, viewChild: MatMenuTrigger) {
     event.preventDefault();
     viewChild.openMenu();
   }

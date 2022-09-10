@@ -23,7 +23,6 @@ export class FavoritesComponent implements OnInit {
     currentRoot: FileElement;
     currentPath: string;
     canNavigateUp = false;
-    count:number;
     ngOnInit() {
     }
   
@@ -33,12 +32,12 @@ export class FavoritesComponent implements OnInit {
       this.updateFileElementQuery();
     }
   
-    removeElement(element: FileElement) {
+    removeElement(element: FileElement | FileElement) {
       this.fileService.delete(element.id);
       this.updateFileElementQuery();
     }
   
-    navigateToFolder(element: FileElement) {
+    navigateToFolder(element: FileElement | FileElement) {
       this.currentRoot = element;
       this.updateFileElementQuery();
       this.currentPath = this.pushToPath(this.currentPath, element.name);
@@ -62,7 +61,7 @@ export class FavoritesComponent implements OnInit {
       this.updateFileElementQuery();
     }
   
-    renameElement(element: FileElement) {
+    renameElement(element: FileElement | FileElement) {
       console.log(element);
       this.fileService.update(element.id, { name: element.name });
       this.updateFileElementQuery();
@@ -73,7 +72,7 @@ export class FavoritesComponent implements OnInit {
     }
   
     getAllFolders() {
-      this.firestoreService.getAllFolders().subscribe( res => {
+      this.firestoreService.getAllElements().subscribe( res => {
           this.listOfElements = res.map((e : any) => {
               const data = e.payload.doc.data();
               data.id = e.payload.doc.id;
@@ -84,19 +83,20 @@ export class FavoritesComponent implements OnInit {
       }, err => {
           console.log('Error occured while fetching file meta data');
       })
+      this.updateFileElementQuery();
   
     }
   
-    deleteFolder(folder : FileElement) {
+    deleteFolder(folder : FileElement | FileElement) {
   
       if(window.confirm('Are you sure you want to delete '+ folder.name   + '?')) {
-        this.firestoreService.deleteFolders(folder);
+        this.firestoreService.deleteElement(folder);
         this.ngOnInit();
      }
     }
   
     getAllFiles() {
-      this.firestoreService.getAllFiles().subscribe( res => {
+      this.firestoreService.getAllElements().subscribe( res => {
           this.listOfElements = res.map((e : any) => {
               const data = e.payload.doc.data();
               data.id = e.payload.doc.id;
@@ -108,10 +108,10 @@ export class FavoritesComponent implements OnInit {
       })
     }
   
-    deleteFile(file : FileMetaData) {
+    deleteFile(file : FileMetaData | FileElement) {
   
       if(window.confirm('Are you sure you want to delete '+ file.name   + '?')) {
-        this.firestoreService.deleteFile(file);
+        this.firestoreService.deleteElement(file);
         this.ngOnInit();
      }
     }
