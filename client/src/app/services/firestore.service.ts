@@ -41,7 +41,7 @@ export class FirestoreService {
     this.fireStore.collection('/element').add(folderMeta)
   }      
 
-  getAllFolders() {
+  getAllElements() {
     return this.fireStore.collection('/element').snapshotChanges();
   }
 
@@ -70,19 +70,7 @@ export class FirestoreService {
     this.fireStore.collection('/element').add(fileMeta);
     
   }
-
-  // dislpay all files
-  getAllFiles() {
-    return this.fireStore.collection('/element').snapshotChanges();
-  }
-
-  // delete file 
-  deleteFile(fileMeta : FileMetaData) {
-
-    this.fireStore.collection('/element').doc(fileMeta.id).delete();
-    this.fireStorage.ref('/element/'+ fileMeta.name).delete();
-
-  }
 }
+
   
 

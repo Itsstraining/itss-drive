@@ -1,12 +1,10 @@
-import { Component, OnInit, } from '@angular/core';
-import { Firestore } from 'firebase/firestore';
+import { Component, NgZone, OnInit, } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FileElement } from 'src/app/models/file-element.model';
 import { FileManagerService } from 'src/app/services/file-manager.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FileMetaData } from 'src/app/models/file-metadata.model';
-import { NbCalendarPageableNavigationComponent } from '@nebular/theme';
 
 @Component({
   selector: 'app-my-drive',
@@ -17,7 +15,8 @@ export class MyDriveComponent implements OnInit{
   constructor(
     private fileService: FileManagerService,
     private firestoreService: FirestoreService,
-    private fireService: AngularFirestore
+    private fireService: AngularFirestore,
+    private zone: NgZone,
     ){}
   public fileElements: Observable<FileElement[]>;
   listOfElements : FileElement[] = [];
@@ -28,17 +27,11 @@ export class MyDriveComponent implements OnInit{
 
   ngOnInit() {
     
-    if (this.fileService.dataLength == 0) {
       console.log(this.fileService.dataLength)
-      this.getAllElements();
-      this.updateFileElementQuery();
-      this.fileService.querySubject.subscribe(res => console.log(res));
-      console.log(this.listOfElements)
-      this.fileService.getData();
-    }
-    else {
-      this.updateFileElementQuery();
-    }
+      this.zone.runOutsideAngular(() => {
+        this.getAllElements()
+        // this.updateFileElementQuery();},
+      });
   }
 
   addFolder(folder: { name: string }) {
@@ -46,12 +39,12 @@ export class MyDriveComponent implements OnInit{
     this.updateFileElementQuery();
   }
 
-  removeElement(element: FileElement) {
+  removeElement(element: FileElement | FileMetaData) {
     this.fileService.delete(element.id);
     this.updateFileElementQuery();
   }
 
-  navigateToFolder(element: FileElement) {
+  navigateToFolder(element: FileElement | FileMetaData) {
     this.currentRoot = element;
     this.updateFileElementQuery();
     this.currentPath = this.pushToPath(this.currentPath, element.name);
@@ -75,7 +68,7 @@ export class MyDriveComponent implements OnInit{
     this.updateFileElementQuery();
   }
 
-  renameElement(element: FileElement) {
+  renameElement(element: FileElement | FileMetaData) {
     console.log(element);
     this.fileService.update(element.id, { name: element.name });
     this.updateFileElementQuery();
@@ -86,18 +79,18 @@ export class MyDriveComponent implements OnInit{
   }
 
   getAllElements() {
-    this.firestoreService.getAllFolders().subscribe( res => {
+    this.firestoreService.getAllElements().subscribe( res => {
       this.fileService.map.clear()
         this.listOfElements = res.map((e : any) => {
             const data = e.payload.doc.data();
             data.id = e.payload.doc.id;
             // console.log(data);
             return this.fileService.add(data);
-            console.log(this.fileService.add(data))
         });
     }, err => {
         console.log('Error occured while fetching file meta data');
     })
+    this.updateFileElementQuery();
   }
 
   deleteElement(element : FileElement | FileMetaData) {
@@ -107,29 +100,6 @@ export class MyDriveComponent implements OnInit{
       this.ngOnInit();
    }
   }
-
-  // getAllFiles() {
-  //   this.firestoreService.getAllFiles().subscribe( res => {
-  //       this.listOfElements = res.map((e : any) => {
-  //           const data = e.payload.doc.data();
-  //           data.id = e.payload.doc.id;
-  //           // console.log(data);
-  //           return this.fileService.add(data);
-  //       });
-  //   }, err => {
-  //       console.log('Error occured while fetching file meta data');
-  //   })
-  // }
-
-  // deleteFile(file : FileMetaData) {
-
-  //   if(window.confirm('Are you sure you want to delete '+ file.name   + '?')) {
-  //     this.firestoreService.deleteFile(file);
-  //     this.ngOnInit();
-  //  }
-  // }
-
-
 
   pushToPath(path: string, folderName: string) {
     let p = path ? path : '';
